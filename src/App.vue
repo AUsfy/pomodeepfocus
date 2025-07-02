@@ -1,7 +1,6 @@
 <script setup>
 import { ref, computed, onMounted, onUnmounted } from 'vue'
 import PomodoroTimer from './components/PomodoroTimer.vue'
-import TaskList from './components/TaskList.vue'
 import Settings from './components/Settings.vue'
 
 const currentView = ref('timer')
@@ -41,13 +40,6 @@ onMounted(() => {
             Timer
           </button>
           <button 
-            @click="currentView = 'tasks'" 
-            :class="{ active: currentView === 'tasks' }"
-            class="nav-btn"
-          >
-            Tasks
-          </button>
-          <button 
             @click="currentView = 'settings'" 
             :class="{ active: currentView === 'settings' }"
             class="nav-btn"
@@ -65,7 +57,6 @@ onMounted(() => {
     <main class="main-content">
       <div class="container">
         <PomodoroTimer v-if="currentView === 'timer'" />
-        <TaskList v-if="currentView === 'tasks'" />
         <Settings v-if="currentView === 'settings'" />
       </div>
     </main>
