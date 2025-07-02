@@ -15,30 +15,41 @@
 
     <div class="timer-display">
       <div class="time-circle">
-        <svg class="progress-ring" width="300" height="300">
+        <svg class="progress-ring" width="280" height="280" viewBox="0 0 280 280">
+          <defs>
+            <linearGradient id="progressGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" :style="`stop-color:${currentMode === 'work' ? 'var(--primary-color)' : currentMode === 'short' ? 'var(--secondary-color)' : 'var(--break-color)'};stop-opacity:1`" />
+              <stop offset="100%" :style="`stop-color:${currentMode === 'work' ? 'var(--primary-light)' : currentMode === 'short' ? '#34d399' : '#60a5fa'};stop-opacity:1`" />
+            </linearGradient>
+          </defs>
           <circle
             class="progress-ring-bg"
-            cx="150"
-            cy="150"
-            r="140"
-            stroke-width="8"
+            cx="140"
+            cy="140"
+            r="130"
+            stroke-width="12"
             fill="transparent"
           />
           <circle
             class="progress-ring-progress"
-            cx="150"
-            cy="150"
-            r="140"
-            stroke-width="8"
+            cx="140"
+            cy="140"
+            r="130"
+            stroke-width="12"
             fill="transparent"
+            stroke="url(#progressGradient)"
             :stroke-dasharray="circumference"
             :stroke-dashoffset="strokeDashOffset"
           />
         </svg>
-        <div class="time-text">
-          <span class="time">{{ formattedTime }}</span>
-          <span class="session-label">{{ getCurrentModeLabel() }}</span>
-          <span v-if="activeTask" class="active-task-name">{{ activeTask.title }}</span>
+        <div class="time-content">
+          <div class="time-display-main">
+            <span class="time">{{ formattedTime }}</span>
+            <div class="session-info">
+              <span class="session-label">{{ getCurrentModeLabel() }}</span>
+              <span v-if="activeTask" class="active-task">{{ activeTask.title }}</span>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -46,87 +57,100 @@
     <div class="timer-controls">
       <button 
         @click="toggleTimer" 
-        class="control-btn primary"
+        class="btn btn-primary control-btn-main"
       >
-        {{ isRunning ? 'PAUSE' : 'START' }}
+        <span v-if="!isRunning">▶</span>
+        <span v-else>⏸</span>
+        {{ isRunning ? 'Pause' : 'Start' }}
       </button>
       <button 
         @click="resetTimer" 
-        class="control-btn secondary"
+        class="btn btn-secondary"
         v-if="timeLeft !== currentModeTime || isRunning"
       >
-        RESET
+        ↻ Reset
       </button>
     </div>
 
-    <div class="session-info" v-if="completedSessions > 0">
-      <p>Sessions completed: {{ completedSessions }}</p>
+    <div class="session-counter" v-if="completedSessions > 0">
+      <div class="counter-content">
+        <span class="counter-number">{{ completedSessions }}</span>
+        <span class="counter-label">{{ completedSessions === 1 ? 'session' : 'sessions' }} completed</span>
+      </div>
     </div>
 
     <!-- Tasks Section -->
     <div class="tasks-section">
-      <div class="task-header">
-        <h2>Tasks</h2>
-        <div class="task-stats">
-          <span>{{ completedTasks }}/{{ totalTasks }} completed</span>
+      <div class="section-header">
+        <h2 class="section-title">Tasks</h2>
+        <div class="task-summary">
+          <span class="summary-text">{{ completedTasks }}/{{ totalTasks }} completed</span>
         </div>
       </div>
 
-      <div class="add-task">
+      <div class="add-task-form">
         <form @submit.prevent="addTask" class="task-form">
-          <input
-            v-model="newTaskTitle"
-            type="text"
-            placeholder="What are you working on?"
-            class="task-input"
-            maxlength="100"
-            required
-          />
-          <input
-            v-model.number="newTaskEstimate"
-            type="number"
-            min="1"
-            max="20"
-            placeholder="Est Pomodoros"
-            class="estimate-input"
-          />
-          <button type="submit" class="add-btn">Add Task</button>
+          <div class="form-group">
+            <input
+              v-model="newTaskTitle"
+              type="text"
+              placeholder="What are you working on?"
+              class="task-input"
+              maxlength="100"
+              required
+            />
+            <input
+              v-model.number="newTaskEstimate"
+              type="number"
+              min="1"
+              max="20"
+              placeholder="Est"
+              class="estimate-input"
+              title="Estimated pomodoros"
+            />
+            <button type="submit" class="btn btn-primary add-btn">
+              + Add
+            </button>
+          </div>
         </form>
       </div>
 
       <div class="tasks-container">
         <div v-if="tasks.length === 0" class="empty-state">
           <div class="empty-icon">📝</div>
-          <p>No tasks yet. Add one above to get started!</p>
+          <p class="empty-text">Add your first task to get started</p>
         </div>
 
-        <div v-else class="tasks">
+        <div v-else class="tasks-list space-y-2">
           <div
             v-for="task in tasks"
             :key="task.id"
             :class="{ 
-              'task-item': true, 
-              'completed': task.completed,
-              'active': task.id === activeTaskId 
+              'task-item': true,
+              'task-completed': task.completed,
+              'task-active': task.id === activeTaskId 
             }"
           >
-            <div class="task-content">
+            <div class="task-main">
               <button
                 @click="toggleTask(task.id)"
                 class="task-checkbox"
                 :class="{ checked: task.completed }"
               >
-                <span v-if="task.completed">✓</span>
+                <svg v-if="task.completed" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <polyline points="20,6 9,17 4,12"/>
+                </svg>
               </button>
 
-              <div class="task-details">
+              <div class="task-info">
                 <h3 class="task-title" :class="{ completed: task.completed }">
                   {{ task.title }}
                 </h3>
                 <div class="task-progress">
-                  <span class="pomodoros-count">
-                    {{ task.completedPomodoros }}/{{ task.estimatedPomodoros }} pomodoros
-                  </span>
+                  <div class="progress-info">
+                    <span class="pomodoro-count">{{ task.completedPomodoros }}/{{ task.estimatedPomodoros }}</span>
+                    <span class="progress-text">pomodoros</span>
+                  </div>
                   <div class="progress-bar">
                     <div 
                       class="progress-fill" 
@@ -141,15 +165,15 @@
               <button
                 @click="setActiveTask(task.id)"
                 class="action-btn"
-                :class="{ active: task.id === activeTaskId }"
+                :class="{ 'action-active': task.id === activeTaskId }"
                 :disabled="task.completed"
               >
                 {{ task.id === activeTaskId ? 'Active' : 'Select' }}
               </button>
-              <button @click="editTask(task)" class="action-btn edit">
+              <button @click="editTask(task)" class="action-btn action-edit">
                 ✏️
               </button>
-              <button @click="deleteTask(task.id)" class="action-btn delete">
+              <button @click="deleteTask(task.id)" class="action-btn action-delete">
                 🗑️
               </button>
             </div>
@@ -160,29 +184,37 @@
 
     <!-- Edit Task Modal -->
     <div v-if="editingTask" class="modal-overlay" @click="cancelEdit">
-      <div class="modal" @click.stop>
-        <h3>Edit Task</h3>
-        <form @submit.prevent="saveEdit" class="edit-form">
-          <input
-            v-model="editForm.title"
-            type="text"
-            placeholder="Task title"
-            class="task-input"
-            required
-          />
-          <input
-            v-model.number="editForm.estimatedPomodoros"
-            type="number"
-            min="1"
-            max="20"
-            placeholder="Estimated Pomodoros"
-            class="estimate-input"
-          />
+      <div class="modal card-elevated" @click.stop>
+        <div class="modal-header">
+          <h3 class="modal-title">Edit Task</h3>
+        </div>
+        <form @submit.prevent="saveEdit" class="modal-form space-y-4">
+          <div class="form-group">
+            <input
+              v-model="editForm.title"
+              type="text"
+              placeholder="Task title"
+              class="task-input"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <input
+              v-model.number="editForm.estimatedPomodoros"
+              type="number"
+              min="1"
+              max="20"
+              placeholder="Estimated Pomodoros"
+              class="estimate-input"
+            />
+          </div>
           <div class="modal-actions">
-            <button type="button" @click="cancelEdit" class="cancel-btn">
+            <button type="button" @click="cancelEdit" class="btn btn-secondary">
               Cancel
             </button>
-            <button type="submit" class="save-btn">Save</button>
+            <button type="submit" class="btn btn-primary">
+              Save Changes
+            </button>
           </div>
         </form>
       </div>
@@ -244,7 +276,7 @@ const toggleTimer = () => {
 }
 
 // Progress ring calculations
-const circumference = 2 * Math.PI * 140
+const circumference = 2 * Math.PI * 130
 const strokeDashOffset = computed(() => {
   const progress = progressPercentage.value / 100
   return circumference - (progress * circumference)
@@ -387,403 +419,541 @@ onMounted(() => {
 
 <style scoped>
 .pomodoro-timer {
-  text-align: center;
-  max-width: 500px;
+  max-width: 600px;
   margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-2xl);
 }
 
+/* Timer modes with pill design */
 .timer-modes {
   display: flex;
   justify-content: center;
-  gap: 0.5rem;
-  margin-bottom: 2rem;
+  gap: var(--spacing-xs);
   background: var(--surface);
-  padding: 0.5rem;
-  border-radius: var(--border-radius);
+  padding: var(--spacing-xs);
+  border-radius: var(--radius-xl);
   border: 1px solid var(--border);
+  box-shadow: var(--shadow-sm);
 }
 
 .mode-btn {
-  padding: 0.75rem 1.5rem;
+  padding: var(--spacing-md) var(--spacing-xl);
   border: none;
   background: transparent;
   color: var(--text-secondary);
-  border-radius: calc(var(--border-radius) - 2px);
+  border-radius: var(--radius-lg);
   cursor: pointer;
-  transition: var(--transition);
+  transition: all var(--transition-fast);
   font-weight: 500;
-  font-size: 0.9rem;
+  font-size: var(--font-size-sm);
+  white-space: nowrap;
 }
 
 .mode-btn:hover {
-  background: var(--background);
+  background: var(--border-light);
   color: var(--text-primary);
+  transform: translateY(-1px);
+}
+
+.mode-btn.active[data-mode="work"] {
+  background: var(--primary-color);
+  color: white;
+  box-shadow: var(--shadow-sm);
 }
 
 .mode-btn.active {
   background: var(--primary-color);
   color: white;
+  box-shadow: var(--shadow-sm);
 }
 
+/* Modern timer display */
 .timer-display {
-  margin-bottom: 2rem;
-  position: relative;
+  display: flex;
+  justify-content: center;
+  margin: var(--spacing-xl) 0;
 }
 
 .time-circle {
   position: relative;
-  display: inline-block;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .progress-ring {
   transform: rotate(-90deg);
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.1));
 }
 
 .progress-ring-bg {
-  stroke: var(--border);
-  opacity: 0.3;
+  stroke: var(--border-light);
+  opacity: 0.5;
 }
 
 .progress-ring-progress {
-  stroke: var(--primary-color);
   stroke-linecap: round;
-  transition: stroke-dashoffset 0.5s ease;
+  transition: stroke-dashoffset var(--transition-slow);
 }
 
-.time-text {
+.time-content {
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.time-display-main {
+  text-align: center;
   display: flex;
   flex-direction: column;
   align-items: center;
+  gap: var(--spacing-sm);
 }
 
 .time {
-  font-size: 3rem;
+  font-size: var(--font-size-4xl);
   font-weight: 700;
   color: var(--text-primary);
-  font-family: 'Courier New', monospace;
-}
-
-.session-label {
-  font-size: 1rem;
-  color: var(--text-secondary);
-  margin-top: 0.5rem;
-}
-
-.active-task-name {
-  font-size: 1rem;
-  color: var(--text-primary);
-  margin-top: 0.5rem;
-}
-
-.timer-controls {
-  display: flex;
-  justify-content: center;
-  gap: 1rem;
-  margin-bottom: 2rem;
-}
-
-.control-btn {
-  padding: 1rem 2rem;
-  border: none;
-  border-radius: var(--border-radius);
-  font-weight: 600;
-  font-size: 1rem;
-  cursor: pointer;
-  transition: var(--transition);
-  min-width: 120px;
-}
-
-.control-btn.primary {
-  background: var(--primary-color);
-  color: white;
-}
-
-.control-btn.primary:hover:not(:disabled) {
-  background: var(--primary-dark);
-  transform: translateY(-1px);
-}
-
-.control-btn.secondary {
-  background: var(--surface);
-  color: var(--text-primary);
-  border: 1px solid var(--border);
-}
-
-.control-btn.secondary:hover {
-  background: var(--background);
-}
-
-.control-btn:disabled {
-  opacity: 0.6;
-  cursor: not-allowed;
+  font-family: 'SF Mono', 'Monaco', 'Consolas', monospace;
+  line-height: 1;
+  letter-spacing: -0.05em;
 }
 
 .session-info {
-  background: var(--surface);
-  padding: 1rem;
-  border-radius: var(--border-radius);
-  border: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xs);
+  text-align: center;
+}
+
+.session-label {
+  font-size: var(--font-size-base);
   color: var(--text-secondary);
+  font-weight: 500;
 }
 
+.active-task {
+  font-size: var(--font-size-sm);
+  color: var(--primary-color);
+  font-weight: 600;
+  max-width: 200px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Modern timer controls */
+.timer-controls {
+  display: flex;
+  justify-content: center;
+  gap: var(--spacing-md);
+  flex-wrap: wrap;
+}
+
+.control-btn-main {
+  padding: var(--spacing-lg) var(--spacing-2xl);
+  font-size: var(--font-size-lg);
+  font-weight: 600;
+  min-width: 140px;
+  gap: var(--spacing-sm);
+}
+
+/* Session counter */
+.session-counter {
+  display: flex;
+  justify-content: center;
+}
+
+.counter-content {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-md) var(--spacing-lg);
+  text-align: center;
+  box-shadow: var(--shadow-sm);
+}
+
+.counter-number {
+  font-size: var(--font-size-2xl);
+  font-weight: 700;
+  color: var(--primary-color);
+  margin-right: var(--spacing-sm);
+}
+
+.counter-label {
+  color: var(--text-secondary);
+  font-size: var(--font-size-sm);
+}
+
+/* Tasks section */
 .tasks-section {
-  margin-top: 2rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-xl);
+  box-shadow: var(--shadow-sm);
 }
 
-.task-header {
+.section-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 1rem;
+  margin-bottom: var(--spacing-lg);
 }
 
-.task-stats {
-  font-size: 0.9rem;
-  color: var(--text-secondary);
+.section-title {
+  font-size: var(--font-size-xl);
+  font-weight: 700;
+  color: var(--text-primary);
 }
 
-.add-task {
-  margin-bottom: 1rem;
-}
-
-.task-form {
+.task-summary {
   display: flex;
-  gap: 0.5rem;
+  align-items: center;
+}
+
+.summary-text {
+  font-size: var(--font-size-sm);
+  color: var(--text-secondary);
+  background: var(--border-light);
+  padding: var(--spacing-xs) var(--spacing-md);
+  border-radius: var(--radius-md);
+}
+
+/* Add task form */
+.add-task-form {
+  margin-bottom: var(--spacing-xl);
+}
+
+.form-group {
+  display: flex;
+  gap: var(--spacing-sm);
+  flex-wrap: wrap;
 }
 
 .task-input {
   flex: 1;
-  padding: 0.5rem;
+  min-width: 250px;
+  padding: var(--spacing-md);
   border: 1px solid var(--border);
-  border-radius: var(--border-radius);
+  border-radius: var(--radius-md);
+  background: var(--background);
+  color: var(--text-primary);
+  font-size: var(--font-size-sm);
+  transition: all var(--transition-fast);
+}
+
+.task-input:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
 }
 
 .estimate-input {
-  width: 100px;
-  padding: 0.5rem;
+  width: 70px;
+  padding: var(--spacing-md);
   border: 1px solid var(--border);
-  border-radius: var(--border-radius);
+  border-radius: var(--radius-md);
+  background: var(--background);
+  color: var(--text-primary);
+  font-size: var(--font-size-sm);
+  text-align: center;
+  transition: all var(--transition-fast);
+}
+
+.estimate-input:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
 }
 
 .add-btn {
-  padding: 0.5rem 1rem;
-  background: var(--primary-color);
-  color: white;
-  border: none;
-  border-radius: var(--border-radius);
-  cursor: pointer;
+  padding: var(--spacing-md) var(--spacing-lg);
+  font-weight: 600;
 }
 
-.add-btn:hover {
-  background: var(--primary-dark);
-}
-
-.tasks-container {
-  background: var(--surface);
-  padding: 1rem;
-  border-radius: var(--border-radius);
-  border: 1px solid var(--border);
-}
-
+/* Tasks list */
 .empty-state {
   text-align: center;
-  color: var(--text-secondary);
+  padding: var(--spacing-2xl);
+  color: var(--text-muted);
 }
 
 .empty-icon {
-  font-size: 2rem;
-  margin-bottom: 0.5rem;
+  font-size: 3rem;
+  margin-bottom: var(--spacing-md);
+  opacity: 0.6;
 }
 
-.tasks {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
+.empty-text {
+  font-size: var(--font-size-base);
 }
 
 .task-item {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0.5rem;
-  border: 1px solid var(--border);
-  border-radius: var(--border-radius);
+  padding: var(--spacing-lg);
   background: var(--background);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  transition: all var(--transition-fast);
+  gap: var(--spacing-md);
 }
 
-.task-item.completed {
-  background: var(--surface);
-  color: var(--text-secondary);
-}
-
-.task-item.active {
+.task-item:hover {
   border-color: var(--primary-color);
+  box-shadow: var(--shadow-sm);
 }
 
-.task-content {
+.task-active {
+  border-color: var(--primary-color);
+  background: rgba(239, 68, 68, 0.05);
+}
+
+.task-completed {
+  opacity: 0.6;
+  background: var(--border-light);
+}
+
+.task-main {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: var(--spacing-md);
+  flex: 1;
+  min-width: 0;
 }
 
 .task-checkbox {
-  width: 20px;
-  height: 20px;
-  border: 1px solid var(--border);
-  border-radius: 50%;
-  background: var(--background);
+  width: 24px;
+  height: 24px;
+  border: 2px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: var(--surface);
   cursor: pointer;
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
+  transition: all var(--transition-fast);
+  color: white;
+  flex-shrink: 0;
+}
+
+.task-checkbox:hover {
+  border-color: var(--primary-color);
 }
 
 .task-checkbox.checked {
-  background: var(--primary-color);
-  color: white;
+  background: var(--secondary-color);
+  border-color: var(--secondary-color);
 }
 
-.task-details {
+.task-info {
   flex: 1;
+  min-width: 0;
 }
 
 .task-title {
-  font-size: 1rem;
+  font-size: var(--font-size-base);
   font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: var(--spacing-xs);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .task-title.completed {
   text-decoration: line-through;
-  color: var(--text-secondary);
+  color: var(--text-muted);
 }
 
 .task-progress {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
-  font-size: 0.9rem;
+  gap: var(--spacing-md);
 }
 
-.pomodoros-count {
+.progress-info {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+  font-size: var(--font-size-xs);
   color: var(--text-secondary);
+  white-space: nowrap;
+}
+
+.pomodoro-count {
+  font-weight: 600;
+  color: var(--primary-color);
 }
 
 .progress-bar {
   flex: 1;
-  height: 5px;
-  background: var(--border);
-  border-radius: var(--border-radius);
+  height: 6px;
+  background: var(--border-light);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
 }
 
 .progress-fill {
   height: 100%;
-  background: var(--primary-color);
-  border-radius: var(--border-radius);
+  background: linear-gradient(90deg, var(--primary-color), var(--primary-light));
+  border-radius: var(--radius-sm);
+  transition: width var(--transition-base);
 }
 
+/* Task actions */
 .task-actions {
   display: flex;
-  gap: 0.5rem;
+  gap: var(--spacing-xs);
+  flex-shrink: 0;
 }
 
 .action-btn {
-  padding: 0.5rem;
-  border: none;
-  border-radius: var(--border-radius);
+  padding: var(--spacing-xs) var(--spacing-sm);
+  border: 1px solid var(--border);
   background: var(--surface);
-  color: var(--text-primary);
+  color: var(--text-secondary);
+  border-radius: var(--radius-sm);
   cursor: pointer;
-}
-
-.action-btn.active {
-  background: var(--primary-color);
-  color: white;
-}
-
-.action-btn.edit {
-  background: var(--background);
-}
-
-.action-btn.delete {
-  background: var(--background);
+  transition: all var(--transition-fast);
+  font-size: var(--font-size-xs);
+  white-space: nowrap;
 }
 
 .action-btn:hover {
-  background: var(--primary-light);
+  background: var(--border-light);
+  color: var(--text-primary);
 }
 
+.action-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.action-active {
+  background: var(--primary-color);
+  color: white;
+  border-color: var(--primary-color);
+}
+
+.action-edit:hover {
+  background: #f59e0b;
+  color: white;
+  border-color: #f59e0b;
+}
+
+.action-delete:hover {
+  background: #ef4444;
+  color: white;
+  border-color: #ef4444;
+}
+
+/* Modal */
 .modal-overlay {
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+  inset: 0;
   background: rgba(0, 0, 0, 0.5);
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  backdrop-filter: blur(4px);
 }
 
 .modal {
-  background: var(--surface);
-  padding: 1rem;
-  border-radius: var(--border-radius);
-  width: 300px;
+  width: 90%;
+  max-width: 400px;
+  padding: var(--spacing-xl);
+  margin: var(--spacing-lg);
 }
 
-.edit-form {
-  display: flex;
+.modal-header {
+  margin-bottom: var(--spacing-lg);
+}
+
+.modal-title {
+  font-size: var(--font-size-lg);
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.modal-form .form-group {
   flex-direction: column;
-  gap: 0.5rem;
+  gap: var(--spacing-sm);
+}
+
+.modal-form .task-input,
+.modal-form .estimate-input {
+  width: 100%;
+  min-width: unset;
 }
 
 .modal-actions {
   display: flex;
-  justify-content: space-between;
+  gap: var(--spacing-sm);
+  justify-content: flex-end;
 }
 
-.cancel-btn {
-  background: var(--background);
-  color: var(--text-primary);
-  border: none;
-  padding: 0.5rem 1rem;
-  border-radius: var(--border-radius);
-}
-
-.save-btn {
-  background: var(--primary-color);
-  color: white;
-  border: none;
-  padding: 0.5rem 1rem;
-  border-radius: var(--border-radius);
-}
-
+/* Mobile responsiveness */
 @media (max-width: 768px) {
+  .pomodoro-timer {
+    gap: var(--spacing-xl);
+  }
+  
   .timer-modes {
     flex-direction: column;
-    gap: 0.25rem;
+    gap: var(--spacing-xs);
   }
   
   .mode-btn {
-    padding: 0.5rem 1rem;
+    padding: var(--spacing-sm) var(--spacing-md);
   }
   
   .time {
-    font-size: 2.5rem;
+    font-size: var(--font-size-3xl);
   }
   
   .progress-ring {
-    width: 250px;
-    height: 250px;
+    width: 240px;
+    height: 240px;
   }
   
   .timer-controls {
     flex-direction: column;
     align-items: center;
+  }
+  
+  .control-btn-main {
+    width: 100%;
+    max-width: 200px;
+  }
+  
+  .form-group {
+    flex-direction: column.
+  }
+  
+  .task-input {
+    min-width: unset.
+  }
+  
+  .task-item {
+    flex-direction: column;
+    align-items: stretch;
+    gap: var(--spacing-md);
+  }
+  
+  .task-actions {
+    justify-content: center.
+  }
+  
+  .modal {
+    margin: var(--spacing-md).
   }
 }
 </style>

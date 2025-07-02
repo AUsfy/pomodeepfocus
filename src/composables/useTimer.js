@@ -165,6 +165,8 @@ const completeSession = () => {
   
   if (currentMode.value === 'work') {
     completedSessions.value++
+    // Track completed pomodoro in history
+    trackPomodoroCompletion()
   }
   
   // Show notification
@@ -182,6 +184,18 @@ const completeSession = () => {
   if ((nextMode !== 'work' && settings.autoStartBreaks) || 
       (nextMode === 'work' && settings.autoStartPomodoros)) {
     setTimeout(() => startTimer(), 1000)
+  }
+}
+
+// Track pomodoro completion in history
+const trackPomodoroCompletion = () => {
+  try {
+    const today = new Date().toISOString().split('T')[0]
+    const history = JSON.parse(localStorage.getItem('pomodoro-history') || '{}')
+    history[today] = (history[today] || 0) + 1
+    localStorage.setItem('pomodoro-history', JSON.stringify(history))
+  } catch (error) {
+    console.error('Failed to track pomodoro completion:', error)
   }
 }
 
