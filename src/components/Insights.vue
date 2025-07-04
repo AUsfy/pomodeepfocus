@@ -33,13 +33,16 @@
               :key="day.date"
               class="chart-bar-container"
             >
+              <div class="chart-count">{{ day.pomodoros }}</div>
               <div 
                 class="chart-bar"
-                :style="{ height: getBarHeight(day.pomodoros) + '%' }"
+                :style="{ 
+                  height: getBarHeight(day.pomodoros) + '%',
+                  top: (100 - getBarHeight(day.pomodoros)) + '%'
+                }"
                 :title="`${day.pomodoros} pomodoros on ${formatDate(day.date)}`"
               ></div>
               <div class="chart-label">{{ getDayLabel(day.date) }}</div>
-              <div class="chart-count">{{ day.pomodoros }}</div>
             </div>
           </div>
         </div>
@@ -239,7 +242,9 @@ const maxDayPomodoros = computed(() => {
 // Helper functions
 const getBarHeight = (pomodoros) => {
   const max = Math.max(...last7Days.value.map(d => d.pomodoros), 1)
-  return (pomodoros / max) * 100
+  const percentage = (pomodoros / max) * 100
+  // Ensure minimum height of 8% for zero values to show baseline
+  return Math.max(percentage, 8)
 }
 
 const getDayLabel = (dateStr) => {
@@ -371,11 +376,12 @@ onMounted(() => {
 .chart-container {
   height: 200px;
   padding: 1rem 0;
+  position: relative;
 }
 
 .chart-bars {
   display: flex;
-  align-items: end;
+  align-items: flex-start;
   justify-content: space-between;
   height: 150px;
   gap: 0.5rem;
@@ -387,33 +393,40 @@ onMounted(() => {
   flex-direction: column;
   align-items: center;
   height: 100%;
+  position: relative;
 }
 
 .chart-bar {
-  background: var(--primary-color);
+  background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
   width: 100%;
   max-width: 40px;
-  border-radius: 4px 4px 0 0;
+  border-radius: 4px;
   min-height: 4px;
-  margin-bottom: 0.5rem;
   transition: var(--transition);
   cursor: pointer;
+  position: absolute;
+  box-shadow: var(--shadow-sm);
 }
 
 .chart-bar:hover {
-  background: var(--primary-dark);
-}
-
-.chart-label {
-  font-size: 0.8rem;
-  color: var(--text-secondary);
-  margin-bottom: 0.25rem;
+  background: linear-gradient(135deg, var(--primary-dark), var(--primary-color));
+  transform: scale(1.05);
 }
 
 .chart-count {
   font-size: 0.9rem;
   font-weight: 600;
   color: var(--text-primary);
+  position: absolute;
+  top: -1.5rem;
+  z-index: 1;
+}
+
+.chart-label {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  position: absolute;
+  bottom: -1.5rem;
 }
 
 .activity-list {

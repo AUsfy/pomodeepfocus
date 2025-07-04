@@ -74,27 +74,31 @@ onMounted(() => {
 
 <style>
 :root {
-  /* Updated color palette for minimalist design */
+  /* Updated modern color palette with light blue theme */
   --primary-color: #ef4444;
   --primary-light: #f87171;
   --primary-dark: #dc2626;
   --secondary-color: #10b981;
   --break-color: #3b82f6;
   
-  /* Modern neutral colors */
-  --background: #fafafa;
+  /* Modern blue-tinted neutral colors */
+  --background: #f0f4f8;
   --surface: #ffffff;
-  --surface-elevated: #ffffff;
-  --text-primary: #111827;
-  --text-secondary: #6b7280;
-  --text-muted: #9ca3af;
-  --border: #e5e7eb;
-  --border-light: #f3f4f6;
+  --surface-elevated: #f8fafc;
+  --surface-hover: #f1f5f9;
+  --text-primary: #1e293b;
+  --text-secondary: #64748b;
+  --text-muted: #94a3b8;
+  --border: #e2e8f0;
+  --border-light: #f1f5f9;
+  --accent-blue: #3b82f6;
+  --accent-blue-light: #dbeafe;
   
-  /* Shadows for depth */
-  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  /* Enhanced shadows with blue tint */
+  --shadow-sm: 0 1px 2px 0 rgba(59, 130, 246, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(59, 130, 246, 0.1), 0 2px 4px -1px rgba(59, 130, 246, 0.06);
+  --shadow-lg: 0 10px 15px -3px rgba(59, 130, 246, 0.1), 0 4px 6px -2px rgba(59, 130, 246, 0.05);
+  --shadow-colored: 0 4px 14px 0 rgba(59, 130, 246, 0.15);
   
   /* Typography */
   --font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
@@ -131,15 +135,19 @@ onMounted(() => {
   --background: #0f172a;
   --surface: #1e293b;
   --surface-elevated: #334155;
+  --surface-hover: #475569;
   --text-primary: #f8fafc;
   --text-secondary: #cbd5e1;
   --text-muted: #64748b;
   --border: #334155;
   --border-light: #475569;
+  --accent-blue: #60a5fa;
+  --accent-blue-light: #1e3a8a;
   
   --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
   --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.4), 0 2px 4px -1px rgba(0, 0, 0, 0.3);
   --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.4), 0 4px 6px -2px rgba(0, 0, 0, 0.3);
+  --shadow-colored: 0 4px 14px 0 rgba(59, 130, 246, 0.3);
 }
 
 * {
@@ -164,9 +172,9 @@ body {
   padding: 0 var(--spacing-lg);
 }
 
-/* Modern header with glassmorphism effect */
+/* Modern header with enhanced glassmorphism effect */
 .app-header {
-  background: rgba(255, 255, 255, 0.8);
+  background: rgba(255, 255, 255, 0.9);
   backdrop-filter: blur(20px);
   border-bottom: 1px solid var(--border-light);
   padding: var(--spacing-lg) 0;
@@ -174,10 +182,11 @@ body {
   top: 0;
   z-index: 100;
   transition: all var(--transition-base);
+  box-shadow: var(--shadow-sm);
 }
 
 [data-theme="dark"] .app-header {
-  background: rgba(30, 41, 59, 0.8);
+  background: rgba(30, 41, 59, 0.9);
 }
 
 .app-header .container {
@@ -202,7 +211,7 @@ body {
   font-size: 2rem;
 }
 
-/* Pill-style navigation */
+/* Enhanced pill-style navigation */
 .main-nav {
   display: flex;
   gap: var(--spacing-xs);
@@ -210,7 +219,7 @@ body {
   padding: var(--spacing-xs);
   border-radius: var(--radius-xl);
   border: 1px solid var(--border);
-  box-shadow: var(--shadow-sm);
+  box-shadow: var(--shadow-md);
 }
 
 .nav-btn {
@@ -227,18 +236,18 @@ body {
 }
 
 .nav-btn:hover {
-  background: var(--border-light);
-  color: var(--text-primary);
+  background: var(--accent-blue-light);
+  color: var(--accent-blue);
   transform: translateY(-1px);
 }
 
 .nav-btn.active {
   background: var(--primary-color);
   color: white;
-  box-shadow: var(--shadow-sm);
+  box-shadow: var(--shadow-colored);
 }
 
-/* Modern theme toggle */
+/* Enhanced theme toggle */
 .theme-toggle {
   padding: var(--spacing-sm);
   border: 1px solid var(--border);
@@ -252,12 +261,14 @@ body {
   justify-content: center;
   width: 40px;
   height: 40px;
+  box-shadow: var(--shadow-sm);
 }
 
 .theme-toggle:hover {
-  background: var(--border-light);
+  background: var(--accent-blue-light);
   transform: translateY(-1px);
-  box-shadow: var(--shadow-sm);
+  box-shadow: var(--shadow-md);
+  color: var(--accent-blue);
 }
 
 .main-content {
@@ -301,7 +312,7 @@ body {
   margin-top: var(--spacing-lg);
 }
 
-/* Modern button styles */
+/* Enhanced button styles */
 .btn {
   display: inline-flex;
   align-items: center;
@@ -316,6 +327,7 @@ body {
   transition: all var(--transition-fast);
   text-decoration: none;
   white-space: nowrap;
+  box-shadow: var(--shadow-sm);
 }
 
 .btn-primary {
@@ -326,7 +338,7 @@ body {
 .btn-primary:hover {
   background: var(--primary-dark);
   transform: translateY(-1px);
-  box-shadow: var(--shadow-md);
+  box-shadow: var(--shadow-colored);
 }
 
 .btn-secondary {
@@ -336,21 +348,24 @@ body {
 }
 
 .btn-secondary:hover {
-  background: var(--border-light);
+  background: var(--surface-hover);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
 }
 
-/* Modern card styles */
+/* Enhanced card styles */
 .card {
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-sm);
+  box-shadow: var(--shadow-md);
   transition: all var(--transition-base);
 }
 
 .card:hover {
-  box-shadow: var(--shadow-md);
+  box-shadow: var(--shadow-lg);
   transform: translateY(-2px);
+  border-color: var(--accent-blue);
 }
 
 .card-elevated {
