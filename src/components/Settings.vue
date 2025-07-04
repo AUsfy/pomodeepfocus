@@ -1,5 +1,13 @@
 <template>
   <div class="settings">
+    <!-- Toast Notification -->
+    <div v-if="notification.show" class="toast-notification" :class="notification.type">
+      <div class="toast-content">
+        <span class="toast-icon">{{ getNotificationIcon(notification.type) }}</span>
+        <span class="toast-message">{{ notification.message }}</span>
+      </div>
+    </div>
+
     <div class="settings-header">
       <h2>Settings</h2>
       <p class="settings-description">
@@ -213,6 +221,13 @@ import { ref, reactive, onMounted, watch } from 'vue'
 
 const importFileInput = ref(null)
 
+// Notification state
+const notification = reactive({
+  show: false,
+  message: '',
+  type: 'success'
+})
+
 // Default settings
 const defaultSettings = {
   pomodoroMinutes: 25,
@@ -232,6 +247,27 @@ const defaultSettings = {
 
 // Reactive settings
 const settings = reactive({ ...defaultSettings })
+
+// Enhanced notification system
+const showNotification = (message, type = 'success') => {
+  notification.message = message
+  notification.type = type
+  notification.show = true
+  
+  // Auto-hide after 3 seconds
+  setTimeout(() => {
+    notification.show = false
+  }, 3000)
+}
+
+const getNotificationIcon = (type) => {
+  switch (type) {
+    case 'success': return '✅'
+    case 'error': return '❌'
+    case 'warning': return '⚠️'
+    default: return 'ℹ️'
+  }
+}
 
 // Settings management
 const saveSettings = () => {
@@ -259,6 +295,7 @@ const resetToDefaults = () => {
   if (confirm('Are you sure you want to reset all settings to default values?')) {
     Object.assign(settings, defaultSettings)
     saveSettings()
+    showNotification('Settings reset to defaults', 'success')
   }
 }
 
@@ -334,15 +371,6 @@ const clearAllData = () => {
     Object.assign(settings, defaultSettings)
     showNotification('All data cleared successfully!', 'success')
   }
-}
-
-// Notification helper
-const showNotification = (message, type = 'info') => {
-  // Simple notification implementation
-  console.log(`${type.toUpperCase()}: ${message}`)
-  
-  // You could integrate with a toast library here
-  alert(message)
 }
 
 // Request notification permission
@@ -621,6 +649,66 @@ defineExpose({
 
 .hidden-input {
   display: none;
+}
+
+/* Toast Notification */
+.toast-notification {
+  position: fixed;
+  bottom: 1rem;
+  right: 1rem;
+  padding: 1rem;
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  animation: fadeIn 0.3s ease-out;
+}
+
+.toast-notification.success {
+  background: var(--success-color);
+  color: white;
+}
+
+.toast-notification.error {
+  background: var(--error-color);
+  color: white;
+}
+
+.toast-notification.warning {
+  background: var(--warning-color);
+  color: white;
+}
+
+.toast-notification.info {
+  background: var(--info-color);
+  color: white;
+}
+
+.toast-content {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.toast-icon {
+  font-size: 1.5rem;
+}
+
+.toast-message {
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* Settings footer */

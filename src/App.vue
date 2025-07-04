@@ -81,6 +81,12 @@ onMounted(() => {
   --secondary-color: #10b981;
   --break-color: #3b82f6;
   
+  /* Notification colors */
+  --success-color: #10b981;
+  --error-color: #ef4444;
+  --warning-color: #f59e0b;
+  --info-color: #3b82f6;
+  
   /* Modern blue-tinted neutral colors */
   --background: #f0f4f8;
   --surface: #ffffff;
