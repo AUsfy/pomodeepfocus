@@ -3,14 +3,42 @@ import { ref, computed, onMounted, onUnmounted } from 'vue'
 import PomodoroTimer from './components/PomodoroTimer.vue'
 import Settings from './components/Settings.vue'
 import Insights from './components/Insights.vue'
+import Login from './components/Login.vue'
+import { useAuth } from './composables/useAuth.js'
 
 const currentView = ref('timer')
 const isDarkMode = ref(false)
+const showLoginModal = ref(false)
+
+// Authentication
+const { user, isAuthenticated, loadStoredUser, logout } = useAuth()
 
 // Theme management
 const toggleTheme = () => {
   isDarkMode.value = !isDarkMode.value
   document.documentElement.setAttribute('data-theme', isDarkMode.value ? 'dark' : 'light')
+  localStorage.setItem('pomodoro-theme', isDarkMode.value ? 'dark' : 'light')
+}
+
+// Authentication handlers
+const showLogin = () => {
+  showLoginModal.value = true
+}
+
+const hideLogin = () => {
+  showLoginModal.value = false
+}
+
+const handleLoginSuccess = () => {
+  showLoginModal.value = false
+  currentView.value = 'timer'
+}
+
+const handleLogout = async () => {
+  if (confirm('Are you sure you want to sign out? Your data will be synced before signing out.')) {
+    await logout()
+    currentView.value = 'timer'
+  }
 }
 
 onMounted(() => {
@@ -20,10 +48,14 @@ onMounted(() => {
     isDarkMode.value = savedTheme === 'dark'
   }
   document.documentElement.setAttribute('data-theme', isDarkMode.value ? 'dark' : 'light')
+  
+  // Load stored user silently (no redirect)
+  loadStoredUser()
 })
 </script>
 
 <template>
+  <!-- Main app interface (always visible) -->
   <div id="app" :class="{ 'dark-mode': isDarkMode }">
     <header class="app-header">
       <div class="container">
@@ -56,9 +88,28 @@ onMounted(() => {
           </button>
         </nav>
 
-        <button @click="toggleTheme" class="theme-toggle">
-          {{ isDarkMode ? '☀️' : '🌙' }}
-        </button>
+        <div class="header-actions">
+          <!-- User info and logout (if authenticated) -->
+          <div v-if="isAuthenticated" class="user-menu">
+            <div class="user-info">
+              <span class="user-avatar">👤</span>
+              <span class="user-name">{{ user.name }}</span>
+            </div>
+            <button @click="handleLogout" class="logout-btn" title="Sign out">
+              🚪
+            </button>
+          </div>
+          
+          <!-- Sign in button (if not authenticated) -->
+          <button v-else @click="showLogin" class="sign-in-btn">
+            <span class="sign-in-icon">🔐</span>
+            Sign In
+          </button>
+
+          <button @click="toggleTheme" class="theme-toggle">
+            {{ isDarkMode ? '☀️' : '🌙' }}
+          </button>
+        </div>
       </div>
     </header>
 
@@ -69,6 +120,17 @@ onMounted(() => {
         <Settings v-if="currentView === 'settings'" />
       </div>
     </main>
+
+    <!-- Login Modal (only shown when user clicks Sign In) -->
+    <div v-if="showLoginModal" class="modal-overlay" @click="hideLogin">
+      <div class="modal-container" @click.stop>
+        <button @click="hideLogin" class="modal-close">×</button>
+        <Login 
+          @loginSuccess="handleLoginSuccess"
+          @continueAsGuest="hideLogin"
+        />
+      </div>
+    </div>
   </div>
 </template>
 
@@ -251,6 +313,174 @@ body {
   background: var(--primary-color);
   color: white;
   box-shadow: var(--shadow-colored);
+}
+
+/* Header actions and user menu */
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+}
+
+.user-menu, .guest-indicator {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  background: var(--surface);
+  padding: var(--spacing-sm) var(--spacing-md);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-sm);
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+}
+
+.user-avatar, .guest-icon {
+  font-size: var(--font-size-lg);
+}
+
+.user-name, .guest-text {
+  font-weight: 500;
+  color: var(--text-primary);
+  font-size: var(--font-size-sm);
+}
+
+.guest-text {
+  color: var(--text-secondary);
+}
+
+.logout-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: var(--font-size-base);
+  color: var(--text-secondary);
+  padding: var(--spacing-xs);
+  border-radius: var(--radius-sm);
+  transition: all var(--transition-fast);
+}
+
+.logout-btn:hover {
+  background: var(--surface-hover);
+  color: var(--text-primary);
+  transform: scale(1.1);
+}
+
+/* Sign in button */
+.sign-in-btn {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  background: var(--primary-color);
+  color: white;
+  border: none;
+  padding: var(--spacing-sm) var(--spacing-md);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  font-size: var(--font-size-sm);
+  font-weight: 500;
+  transition: all var(--transition-fast);
+  box-shadow: var(--shadow-sm);
+}
+
+.sign-in-btn:hover {
+  background: var(--primary-dark);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-colored);
+}
+
+.sign-in-icon {
+  font-size: var(--font-size-base);
+}
+
+/* Modal overlay and container */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  backdrop-filter: blur(8px);
+  animation: fadeIn 0.2s ease-out;
+}
+
+.modal-container {
+  position: relative;
+  max-width: 90vw;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+.modal-close {
+  position: absolute;
+  top: var(--spacing-md);
+  right: var(--spacing-md);
+  width: 32px;
+  height: 32px;
+  border: none;
+  background: rgba(0, 0, 0, 0.1);
+  color: var(--text-secondary);
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: var(--font-size-xl);
+  font-weight: bold;
+  z-index: 10;
+  transition: all var(--transition-fast);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-close:hover {
+  background: rgba(0, 0, 0, 0.2);
+  color: var(--text-primary);
+  transform: scale(1.1);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Enhanced mobile responsiveness for header */
+@media (max-width: 768px) {
+  .header-actions {
+    order: 1;
+    gap: var(--spacing-sm);
+  }
+  
+  .user-menu {
+    padding: var(--spacing-xs) var(--spacing-sm);
+  }
+  
+  .user-name {
+    display: none;
+  }
+  
+  .sign-in-btn {
+    padding: var(--spacing-xs) var(--spacing-sm);
+    font-size: var(--font-size-xs);
+  }
+  
+  .theme-toggle {
+    width: 36px;
+    height: 36px;
+    font-size: var(--font-size-base);
+  }
+  
+  .modal-container {
+    max-width: 95vw;
+  }
 }
 
 /* Enhanced theme toggle */
