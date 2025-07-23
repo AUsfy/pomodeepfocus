@@ -1,10 +1,11 @@
 <script setup>
-import { ref, computed, onMounted, onUnmounted } from 'vue'
+import { ref, computed, onMounted, onUnmounted, watch } from 'vue'
 import PomodoroTimer from './components/PomodoroTimer.vue'
 import Settings from './components/Settings.vue'
 import Insights from './components/Insights.vue'
 import Login from './components/Login.vue'
 import { useAuth } from './composables/useAuth.js'
+import { useSEO } from './composables/useSEO.js'
 
 const currentView = ref('timer')
 const isDarkMode = ref(false)
@@ -12,6 +13,26 @@ const showLoginModal = ref(false)
 
 // Authentication
 const { user, isAuthenticated, loadStoredUser, logout } = useAuth()
+
+// SEO Management
+const { setTimerPage, setInsightsPage, setSettingsPage, setHomePage } = useSEO()
+
+// Watch for view changes and update SEO
+watch(currentView, (newView) => {
+  switch (newView) {
+    case 'timer':
+      setTimerPage()
+      break
+    case 'insights':
+      setInsightsPage()
+      break
+    case 'settings':
+      setSettingsPage()
+      break
+    default:
+      setHomePage()
+  }
+}, { immediate: true })
 
 // Theme management
 const toggleTheme = () => {

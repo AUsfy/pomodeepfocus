@@ -1,0 +1,22 @@
+User-agent: *
+Allow: /
+
+# Main pages
+Allow: /timer
+Allow: /insights
+Allow: /settings
+
+# Static assets
+Allow: /assets/
+Allow: *.css
+Allow: *.js
+Allow: *.png
+Allow: *.jpg
+Allow: *.svg
+Allow: *.ico
+
+# Block health check from being indexed
+Disallow: /health
+
+# Sitemap location
+Sitemap: https://pomodeepfocus.online/sitemap.xml

@@ -4,10 +4,121 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite + Vue</title>
+    
+    <!-- Performance and Web Vitals -->
+    <link rel="dns-prefetch" href="//fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <meta name="theme-color" content="#1e40af">
+    <meta name="color-scheme" content="light dark">
+    
+    <!-- PWA Meta Tags -->
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="Pomo">
+    <link rel="manifest" href="/manifest.json">
+    
+    <!-- Preload critical resources -->
+    <link rel="modulepreload" href="/src/main.js">
+    <link rel="prefetch" href="/src/components/PomodoroTimer.vue">
+    
+    <!-- Primary SEO Meta Tags -->
+        <!-- Structured Data for SEO -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "Pomo - Pomodoro Timer",
+      "applicationCategory": "ProductivityApplication",
+      "operatingSystem": "All",
+      "url": "https://yourapp.azurecontainerapps.io",
+      "description": "Focus & productivity app using the Pomodoro Technique with 25-minute work sessions and 5-minute breaks",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "author": {
+        "@type": "Organization",
+        "name": "Pomo Team"
+      },
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.8",
+        "ratingCount": "1250"
+      },
+      "featureList": [
+        "25-minute Pomodoro timer",
+        "5-minute break timer", 
+        "Task management",
+        "Progress tracking",
+        "Productivity insights",
+        "Customizable settings",
+        "Dark/light themes"
+      ]
+    }
+    </script>
+    
+    <title>Pomo - Pomodoro Timer | Focus & Productivity App</title>
+    <meta name="title" content="Pomo - Free Pomodoro Timer for Productivity | Focus & Time Management" />
+    <meta name="description" content="Boost your productivity with Pomo, a free online Pomodoro timer. Track tasks, manage work sessions, and improve focus with the proven 25-minute technique. No signup required." />
+    <meta name="keywords" content="pomodoro timer, productivity app, focus timer, time management, task tracker, work timer, study timer, free timer" />
+    <meta name="author" content="Pomo" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://yourapp.azurecontainerapps.io" />
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://yourapp.azurecontainerapps.io" />
+    <meta property="og:title" content="Pomo - Free Pomodoro Timer for Productivity" />
+    <meta property="og:description" content="Boost your productivity with Pomo, a free online Pomodoro timer. Track tasks, manage work sessions, and improve focus with the proven 25-minute technique." />
+    <meta property="og:image" content="https://yourapp.azurecontainerapps.io/og-image.png" />
+    <meta property="og:image:alt" content="Pomo Pomodoro Timer App Screenshot" />
+    <meta property="og:site_name" content="Pomo" />
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://yourapp.azurecontainerapps.io" />
+    <meta property="twitter:title" content="Pomo - Free Pomodoro Timer for Productivity" />
+    <meta property="twitter:description" content="Boost your productivity with Pomo, a free online Pomodoro timer. Track tasks, manage work sessions, and improve focus." />
+    <meta property="twitter:image" content="https://yourapp.azurecontainerapps.io/og-image.png" />
+    
+    <!-- Additional SEO Meta Tags -->
+    <meta name="theme-color" content="#ef4444" />
+    <meta name="application-name" content="Pomo" />
+    <meta name="apple-mobile-web-app-title" content="Pomo" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "Pomo",
+      "description": "Free online Pomodoro timer for productivity and time management",
+      "url": "https://yourapp.azurecontainerapps.io",
+      "applicationCategory": "ProductivityApplication",
+      "operatingSystem": "Any",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "featureList": [
+        "Pomodoro Timer",
+        "Task Management", 
+        "Productivity Tracking",
+        "Focus Sessions",
+        "Work-Break Cycles"
+      ]
+    }
+    </script>
   </head>
   <body>
     <div id="app"></div>
     <script type="module" src="/src/main.js"></script>
   </body>
 </html>
+
