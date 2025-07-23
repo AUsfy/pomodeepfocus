@@ -52,27 +52,27 @@ export function useSEO() {
 
   // Predefined page configurations
   const setTimerPage = () => {
-    title.value = 'Timer - Pomo Pomodoro'
-    description.value = 'Start your Pomodoro session with our focused timer. Track your 25-minute work sessions and 5-minute breaks for maximum productivity.'
-    keywords.value = 'pomodoro timer, focus timer, work timer, productivity timer, 25 minute timer'
+    title.value = 'Pomodoro Timer - Focus Sessions | Pomo'
+    description.value = 'Start your focused work session with Pomo\'s timer. Break down your tasks into 25-minute focused intervals followed by strategic breaks for maximum productivity.'
+    keywords.value = 'pomodoro timer, focus session, work timer, productivity timer, 25 minute timer, time blocking'
   }
 
   const setInsightsPage = () => {
-    title.value = 'Insights - Pomo Pomodoro'
-    description.value = 'Track your productivity with detailed insights and statistics. View your daily progress and Pomodoro session history.'
-    keywords.value = 'productivity insights, pomodoro statistics, work tracking, productivity analytics'
+    title.value = 'Productivity Insights & Statistics | Pomo'
+    description.value = 'Track your productivity progress with detailed insights. View your focus sessions, completed tasks, and productivity patterns to optimize your work habits.'
+    keywords.value = 'productivity insights, focus statistics, work analytics, productivity tracking, time management stats'
   }
 
   const setSettingsPage = () => {
-    title.value = 'Settings - Pomo Pomodoro'
-    description.value = 'Customize your Pomodoro timer settings. Adjust work and break durations, notifications, and themes.'
-    keywords.value = 'pomodoro settings, timer customization, productivity preferences'
+    title.value = 'Timer Settings & Customization | Pomo'
+    description.value = 'Customize your Pomo experience. Adjust timer durations, notification preferences, and themes to create your perfect productivity environment.'
+    keywords.value = 'pomodoro settings, timer customization, productivity preferences, focus settings'
   }
 
   const setHomePage = () => {
-    title.value = 'Pomo - Pomodoro Timer | Focus & Productivity App'
-    description.value = 'Boost your productivity with the Pomodoro Technique. Free online timer with 25-minute work sessions and 5-minute breaks. Track tasks and improve focus.'
-    keywords.value = 'pomodoro, timer, productivity, focus, time management, work sessions, breaks'
+    title.value = 'Pomo - Free Pomodoro Timer | Time-Blocking for Productivity'
+    description.value = 'Pomo is a time-blocking app that helps you to be more productive and achieve your goals. It works by breaking down your work into manageable chunks of focused time with strategic breaks.'
+    keywords.value = 'pomodoro timer, time blocking app, productivity timer, focus timer, work timer, task management'
   }
 
   return {
