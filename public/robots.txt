@@ -3,8 +3,11 @@ Allow: /
 
 # Main pages
 Allow: /timer
+Allow: /tasks
 Allow: /insights
 Allow: /settings
+Allow: /about
+Allow: /help
 
 # Static assets
 Allow: /assets/
@@ -14,9 +17,48 @@ Allow: *.png
 Allow: *.jpg
 Allow: *.svg
 Allow: *.ico
+Allow: *.webp
 
-# Block health check from being indexed
+# Block unnecessary paths
+Disallow: /api/
+Disallow: /admin/
 Disallow: /health
+Disallow: /*.json$
+Disallow: /*?*source=
+Disallow: /*?*utm_
+Disallow: /*?*ref=
+
+# Crawl delay
+Crawl-delay: 1
+
+# Specific bot rules for better crawling
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 1
+
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 1
+
+User-agent: Slurp
+Allow: /
+Crawl-delay: 1
+
+User-agent: DuckDuckBot
+Allow: /
+
+# Block resource-heavy bots
+User-agent: AhrefsBot
+Disallow: /
+
+User-agent: MJ12bot
+Disallow: /
+
+User-agent: DotBot
+Disallow: /
+
+User-agent: SemrushBot
+Disallow: /
 
 # Sitemap location
 Sitemap: https://pomodeepfocus.online/sitemap.xml

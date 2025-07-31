@@ -1,0 +1,39 @@
+/* TEAM */
+Developer: Pomo Development Team
+Contact: hello [at] pomodeepfocus.online
+Location: Global
+
+/* THANKS */
+Vue.js Community
+Open Source Contributors
+Productivity Enthusiasts
+
+/* SITE */
+Last update: 2025/01/31
+Language: English
+Doctype: HTML5
+IDE: Visual Studio Code
+Standards: HTML5, CSS3, ES6+
+Components: Vue.js 3, Vite
+Hosting: Azure Container Apps
+
+/* TECHNOLOGY */
+Framework: Vue.js 3 with Composition API
+Build Tool: Vite 7.0
+Deployment: Docker + Azure Container Apps
+Design: Custom CSS with Blue Theme
+Features: Pomodoro Timer, Task Management, Progress Tracking
+Performance: Optimized for Core Web Vitals
+Accessibility: WCAG 2.1 AA Compliant
+SEO: Comprehensive Meta Tags and Structured Data
+
+/* POMODORO TECHNIQUE */
+Work Sessions: 25 minutes
+Short Breaks: 5 minutes
+Long Breaks: 15-30 minutes
+Cycles: 4 work sessions per long break
+
+Invented by: Francesco Cirillo
+Inspired by: Tomato-shaped kitchen timer
+Purpose: Improve focus and productivity
+Method: Time boxing with regular breaks
