@@ -1,12 +1,12 @@
 <template>
   <div class="faq-page">
-    <div class="max-w-4xl mx-auto px-4 py-8">
-      <h1 class="text-3xl font-bold text-gray-900 mb-8">Frequently Asked Questions</h1>
+    <div class="faq-container">
+      <h1 class="page-title">Frequently Asked Questions</h1>
       
-      <div class="space-y-6">
+      <div class="faq-list">
         <div class="faq-item" v-for="(faq, index) in faqs" :key="index">
-          <h2 class="text-xl font-semibold text-gray-800 mb-2">{{ faq.question }}</h2>
-          <div class="text-gray-600 prose max-w-none" v-html="faq.answer"></div>
+          <h2 class="faq-question">{{ faq.question }}</h2>
+          <div class="faq-answer" v-html="faq.answer"></div>
         </div>
       </div>
     </div>
@@ -131,16 +131,88 @@ const faqs = [
 </script>
 
 <style scoped>
+.faq-page {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: var(--spacing-2xl);
+  color: var(--text-primary);
+}
+
+.faq-container {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-2xl);
+  box-shadow: var(--shadow-sm);
+}
+
+.page-title {
+  font-size: var(--font-size-3xl);
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: var(--spacing-2xl);
+  text-align: center;
+}
+
+.faq-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xl);
+}
+
 .faq-item {
-  border-bottom: 1px solid #e5e7eb;
-  padding-bottom: 1.5rem;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: var(--spacing-lg);
 }
 
 .faq-item:last-child {
   border-bottom: none;
+  padding-bottom: 0;
 }
 
-.prose {
+.faq-question {
+  font-size: var(--font-size-xl);
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: var(--spacing-md);
+  line-height: 1.4;
+}
+
+.faq-answer {
+  font-size: var(--font-size-base);
+  color: var(--text-secondary);
   line-height: 1.6;
+}
+
+.faq-answer p {
+  margin-bottom: var(--spacing-sm);
+}
+
+.faq-answer p:last-child {
+  margin-bottom: 0;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+  .faq-page {
+    padding: var(--spacing-lg);
+  }
+  
+  .faq-container {
+    padding: var(--spacing-lg);
+  }
+  
+  .page-title {
+    font-size: var(--font-size-2xl);
+    margin-bottom: var(--spacing-xl);
+  }
+  
+  .faq-question {
+    font-size: var(--font-size-lg);
+  }
+  
+  .faq-answer {
+    font-size: var(--font-size-sm);
+  }
 }
 </style>
