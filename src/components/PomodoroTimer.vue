@@ -1,5 +1,34 @@
 <template>
   <div class="pomodoro-timer">
+    <!-- Pomodoro Description Section -->
+    <div class="pomodoro-description">
+      <div class="description-content">
+        <h2 class="description-title">The Pomodoro Technique</h2>
+        <p class="description-text">
+          Work in focused 25-minute sessions followed by 5-minute breaks. After 4 sessions, take a longer 15-30 minute break. 
+          This proven method helps improve focus, reduce mental fatigue, and boost productivity.
+        </p>
+        <div class="technique-steps">
+          <div class="step">
+            <span class="step-icon">🍅</span>
+            <span class="step-text">25 min work</span>
+          </div>
+          <div class="step">
+            <span class="step-icon">☕</span>
+            <span class="step-text">5 min break</span>
+          </div>
+          <div class="step">
+            <span class="step-icon">🔄</span>
+            <span class="step-text">Repeat 4x</span>
+          </div>
+          <div class="step">
+            <span class="step-icon">🏖️</span>
+            <span class="step-text">Long break</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <!-- Timer Section -->
     <div class="timer-modes">
       <button 
@@ -935,11 +964,11 @@ onMounted(() => {
   }
   
   .form-group {
-    flex-direction: column.
+    flex-direction: column;
   }
   
   .task-input {
-    min-width: unset.
+    min-width: unset;
   }
   
   .task-item {
@@ -949,11 +978,120 @@ onMounted(() => {
   }
   
   .task-actions {
-    justify-content: center.
+    justify-content: center;
   }
   
   .modal {
-    margin: var(--spacing-md).
+    margin: var(--spacing-md);
+  }
+}
+
+/* Pomodoro Description Styles */
+.pomodoro-description {
+  background: linear-gradient(135deg, var(--accent-blue-light), var(--surface));
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-xl);
+  margin-bottom: var(--spacing-xl);
+  box-shadow: var(--shadow-md);
+}
+
+.description-content {
+  text-align: center;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.description-title {
+  font-size: var(--font-size-2xl);
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: var(--spacing-md);
+}
+
+.description-text {
+  font-size: var(--font-size-base);
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin-bottom: var(--spacing-lg);
+}
+
+.technique-steps {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: var(--spacing-lg);
+  flex-wrap: wrap;
+}
+
+.step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-sm);
+  padding: var(--spacing-md);
+  background: var(--surface);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+  transition: all var(--transition-fast);
+  min-width: 80px;
+}
+
+.step:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.step-icon {
+  font-size: var(--font-size-xl);
+}
+
+.step-text {
+  font-size: var(--font-size-sm);
+  font-weight: 500;
+  color: var(--text-secondary);
+  text-align: center;
+}
+
+/* Dark theme adjustments for description */
+[data-theme="dark"] .pomodoro-description {
+  background: linear-gradient(135deg, var(--accent-blue-light), var(--surface-elevated));
+}
+
+[data-theme="dark"] .step {
+  background: var(--surface-elevated);
+}
+
+/* Mobile responsiveness for description */
+@media (max-width: 768px) {
+  .pomodoro-description {
+    padding: var(--spacing-lg);
+    margin-bottom: var(--spacing-lg);
+  }
+  
+  .description-title {
+    font-size: var(--font-size-xl);
+  }
+  
+  .description-text {
+    font-size: var(--font-size-sm);
+  }
+  
+  .technique-steps {
+    gap: var(--spacing-md);
+  }
+  
+  .step {
+    padding: var(--spacing-sm);
+    min-width: 70px;
+  }
+  
+  .step-icon {
+    font-size: var(--font-size-lg);
+  }
+  
+  .step-text {
+    font-size: var(--font-size-xs);
   }
 }
 </style>

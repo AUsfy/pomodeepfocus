@@ -3,8 +3,8 @@
 
 # Configuration variables (should match existing resources)
 $AppResourceGroup = "rg-pomo-timer"
-$RegistryResourceGroup = "rg-pomodoro-timer"
-$ContainerRegistryName = "acrpomodorotimer"
+$RegistryResourceGroup = "rg-pomo-timer"
+$ContainerRegistryName = "pomoregistry1752059177"
 $AppName = "pomo-timer"
 $ImageName = "pomodoro-timer"
 
