@@ -4,6 +4,9 @@ import PomodoroTimer from './components/PomodoroTimer.vue'
 import Settings from './components/Settings.vue'
 import Insights from './components/Insights.vue'
 import Login from './components/Login.vue'
+import FAQ from './components/FAQ.vue'
+import About from './components/About.vue'
+import Help from './components/Help.vue'
 import { useAuth } from './composables/useAuth.js'
 import { useSEO } from './composables/useSEO.js'
 
@@ -15,7 +18,7 @@ const showLoginModal = ref(false)
 const { user, isAuthenticated, loadStoredUser, logout } = useAuth()
 
 // SEO Management
-const { setTimerPage, setInsightsPage, setSettingsPage, setHomePage } = useSEO()
+const { setTimerPage, setInsightsPage, setSettingsPage, setHomePage, setFAQPage, setAboutPage, setHelpPage } = useSEO()
 
 // Watch for view changes and update SEO
 watch(currentView, (newView) => {
@@ -28,6 +31,15 @@ watch(currentView, (newView) => {
       break
     case 'settings':
       setSettingsPage()
+      break
+    case 'faq':
+      setFAQPage()
+      break
+    case 'about':
+      setAboutPage()
+      break
+    case 'help':
+      setHelpPage()
       break
     default:
       setHomePage()
@@ -107,6 +119,27 @@ onMounted(() => {
           >
             Settings
           </button>
+          <button 
+            @click="currentView = 'faq'" 
+            :class="{ active: currentView === 'faq' }"
+            class="nav-btn"
+          >
+            FAQ
+          </button>
+          <button 
+            @click="currentView = 'about'" 
+            :class="{ active: currentView === 'about' }"
+            class="nav-btn"
+          >
+            About
+          </button>
+          <button 
+            @click="currentView = 'help'" 
+            :class="{ active: currentView === 'help' }"
+            class="nav-btn"
+          >
+            Help
+          </button>
         </nav>
 
         <div class="header-actions">
@@ -139,6 +172,9 @@ onMounted(() => {
         <PomodoroTimer v-if="currentView === 'timer'" />
         <Insights v-if="currentView === 'insights'" ref="insightsRef" />
         <Settings v-if="currentView === 'settings'" />
+        <FAQ v-if="currentView === 'faq'" />
+        <About v-if="currentView === 'about'" />
+        <Help v-if="currentView === 'help'" />
       </div>
     </main>
 

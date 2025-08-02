@@ -9,59 +9,73 @@
           <div class="text-gray-600 prose max-w-none" v-html="faq.answer"></div>
         </div>
       </div>
-      
-      <!-- Schema.org FAQ structured data -->
-      <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@type": "FAQPage",
-        "mainEntity": [
-          {
-            "@type": "Question",
-            "name": "What is the Pomodoro Technique?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "The Pomodoro Technique is a time management method where you work for 25 minutes, then take a 5-minute break. After 4 cycles, you take a longer 15-30 minute break. It helps improve focus and productivity."
-            }
-          },
-          {
-            "@type": "Question", 
-            "name": "Is Pomo timer free to use?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Yes, Pomo is completely free to use. No registration required, no hidden fees, and no premium features locked behind a paywall."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "Do I need to create an account?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "No account is required to use Pomo. However, you can optionally sign in to sync your data across devices and track long-term progress."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "Can I customize timer durations?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Yes, you can customize work session length, short break duration, and long break duration in the settings page to match your preferences."
-            }
-          }
-        ]
-      }
-      </script>
     </div>
   </div>
 </template>
 
 <script setup>
+import { onMounted, onUnmounted } from 'vue'
 import { useSEO } from '../composables/useSEO'
 
 useSEO({
   title: 'FAQ - Pomo Timer',
   description: 'Frequently asked questions about Pomo Pomodoro timer, the free productivity app for time management and focus.',
   keywords: 'pomodoro timer faq, productivity questions, time management help, focus timer support'
+})
+
+// Add structured data for SEO
+let structuredDataScript = null
+
+onMounted(() => {
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is the Pomodoro Technique?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The Pomodoro Technique is a time management method where you work for 25 minutes, then take a 5-minute break. After 4 cycles, you take a longer 15-30 minute break. It helps improve focus and productivity."
+        }
+      },
+      {
+        "@type": "Question", 
+        "name": "Is Pomo timer free to use?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes, Pomo is completely free to use. No registration required, no hidden fees, and no premium features locked behind a paywall."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Do I need to create an account?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No account is required to use Pomo. However, you can optionally sign in to sync your data across devices and track long-term progress."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I customize timer durations?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes, you can customize work session length, short break duration, and long break duration in the settings page to match your preferences."
+        }
+      }
+    ]
+  }
+
+  structuredDataScript = document.createElement('script')
+  structuredDataScript.type = 'application/ld+json'
+  structuredDataScript.textContent = JSON.stringify(structuredData)
+  document.head.appendChild(structuredDataScript)
+})
+
+onUnmounted(() => {
+  if (structuredDataScript) {
+    document.head.removeChild(structuredDataScript)
+  }
 })
 
 const faqs = [

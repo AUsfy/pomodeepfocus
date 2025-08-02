@@ -75,6 +75,24 @@ export function useSEO() {
     keywords.value = 'pomodoro timer, time blocking app, productivity timer, focus timer, work timer, task management'
   }
 
+  const setFAQPage = () => {
+    title.value = 'FAQ - Pomo Timer'
+    description.value = 'Frequently asked questions about Pomo Pomodoro timer, the free productivity app for time management and focus.'
+    keywords.value = 'pomodoro timer faq, productivity questions, time management help, focus timer support'
+  }
+
+  const setAboutPage = () => {
+    title.value = 'About Pomo - Free Pomodoro Timer for Productivity'
+    description.value = 'Learn about Pomo, the free Pomodoro timer app that helps boost productivity through focused work sessions and strategic breaks. No registration required.'
+    keywords.value = 'about pomo, pomodoro timer, productivity app, time management, focus technique, free timer, work efficiency'
+  }
+
+  const setHelpPage = () => {
+    title.value = 'Help Center - Pomo Timer Guide'
+    description.value = 'Complete guide to using Pomo Pomodoro timer. Learn how to start your first session, manage tasks, read insights, and customize settings for maximum productivity.'
+    keywords.value = 'pomo help, pomodoro timer guide, productivity tips, time management tutorial, focus technique, timer settings'
+  }
+
   return {
     title,
     description,
@@ -83,6 +101,9 @@ export function useSEO() {
     setTimerPage,
     setInsightsPage,
     setSettingsPage,
-    setHomePage
+    setHomePage,
+    setFAQPage,
+    setAboutPage,
+    setHelpPage
   }
 }
