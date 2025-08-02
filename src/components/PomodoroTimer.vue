@@ -42,7 +42,7 @@
       </button>
     </div>
 
-    <div class="timer-display">
+    <div class="timer-display" :class="{ running: isRunning }">
       <div class="time-circle">
         <svg class="progress-ring" width="280" height="280" viewBox="0 0 280 280">
           <defs>
@@ -50,7 +50,12 @@
               <stop offset="0%" :style="`stop-color:${currentMode === 'work' ? 'var(--primary-color)' : currentMode === 'short' ? 'var(--secondary-color)' : 'var(--break-color)'};stop-opacity:1`" />
               <stop offset="100%" :style="`stop-color:${currentMode === 'work' ? 'var(--primary-light)' : currentMode === 'short' ? '#34d399' : '#60a5fa'};stop-opacity:1`" />
             </linearGradient>
+            <linearGradient id="backgroundGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" style="stop-color:var(--border);stop-opacity:1" />
+              <stop offset="100%" style="stop-color:var(--border-light);stop-opacity:1" />
+            </linearGradient>
           </defs>
+          <!-- Enhanced background circle with better visibility -->
           <circle
             class="progress-ring-bg"
             cx="140"
@@ -58,7 +63,22 @@
             r="130"
             stroke-width="12"
             fill="transparent"
+            stroke="url(#backgroundGradient)"
           />
+          <!-- Dotted guide circle for better visibility when inactive -->
+          <circle
+            v-if="!isRunning && timeLeft === currentModeTime"
+            class="progress-ring-guide"
+            cx="140"
+            cy="140"
+            r="130"
+            stroke-width="2"
+            fill="transparent"
+            :stroke="currentMode === 'work' ? 'var(--primary-color)' : currentMode === 'short' ? 'var(--secondary-color)' : 'var(--break-color)'"
+            stroke-dasharray="8,4"
+            opacity="0.6"
+          />
+          <!-- Progress circle -->
           <circle
             class="progress-ring-progress"
             cx="140"
@@ -510,6 +530,40 @@ onMounted(() => {
   display: flex;
   align-items: center;
   justify-content: center;
+  background: radial-gradient(circle at center, var(--surface-elevated) 0%, var(--surface) 70%);
+  border-radius: 50%;
+  padding: var(--spacing-md);
+  box-shadow: var(--shadow-lg);
+  transition: all var(--transition-base);
+}
+
+/* Enhanced styling when timer is not running */
+.timer-display:not(.running) .time-circle {
+  background: radial-gradient(circle at center, var(--accent-blue-light) 0%, var(--surface) 70%);
+  box-shadow: var(--shadow-lg), inset 0 0 20px rgba(59, 130, 246, 0.1);
+}
+
+/* Subtle pulse animation when inactive */
+.timer-display:not(.running) .time-circle::before {
+  content: '';
+  position: absolute;
+  inset: -4px;
+  border-radius: 50%;
+  background: linear-gradient(45deg, var(--accent-blue), var(--primary-color));
+  opacity: 0.3;
+  z-index: -1;
+  animation: pulse 3s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.3;
+  }
+  50% {
+    transform: scale(1.02);
+    opacity: 0.5;
+  }
 }
 
 .progress-ring {
@@ -518,8 +572,31 @@ onMounted(() => {
 }
 
 .progress-ring-bg {
-  stroke: var(--border-light);
-  opacity: 0.5;
+  stroke: var(--border);
+  opacity: 0.8;
+  stroke-width: 12;
+  transition: all var(--transition-base);
+}
+
+/* Enhanced background visibility when timer is inactive */
+.timer-display:not(.running) .progress-ring-bg {
+  stroke: var(--border);
+  opacity: 1;
+  stroke-width: 8;
+}
+
+.progress-ring-guide {
+  stroke-linecap: round;
+  animation: rotate 20s linear infinite;
+}
+
+@keyframes rotate {
+  from {
+    stroke-dashoffset: 0;
+  }
+  to {
+    stroke-dashoffset: -100;
+  }
 }
 
 .progress-ring-progress {
