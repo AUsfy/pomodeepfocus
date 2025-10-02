@@ -3,10 +3,10 @@ import { ref, computed, onMounted, onUnmounted, watch } from 'vue'
 import PomodoroTimer from './components/PomodoroTimer.vue'
 import Settings from './components/Settings.vue'
 import Insights from './components/Insights.vue'
+import Blog from './components/Blog.vue'
 import Login from './components/Login.vue'
 import FAQ from './components/FAQ.vue'
 import About from './components/About.vue'
-import Help from './components/Help.vue'
 import { useAuth } from './composables/useAuth.js'
 import { useSEO } from './composables/useSEO.js'
 
@@ -18,7 +18,7 @@ const showLoginModal = ref(false)
 const { user, isAuthenticated, loadStoredUser, logout } = useAuth()
 
 // SEO Management
-const { setTimerPage, setInsightsPage, setSettingsPage, setHomePage, setFAQPage, setAboutPage, setHelpPage } = useSEO()
+const { setTimerPage, setInsightsPage, setSettingsPage, setHomePage, setFAQPage, setAboutPage } = useSEO()
 
 // Watch for view changes and update SEO
 watch(currentView, (newView) => {
@@ -28,6 +28,9 @@ watch(currentView, (newView) => {
       break
     case 'insights':
       setInsightsPage()
+      break
+    case 'blog':
+      setHomePage() // Use homepage SEO for blog for now
       break
     case 'settings':
       setSettingsPage()
@@ -74,6 +77,10 @@ const handleLogout = async () => {
   }
 }
 
+const handleViewSwitch = (view) => {
+  currentView.value = view
+}
+
 onMounted(() => {
   // Load theme preference from localStorage
   const savedTheme = localStorage.getItem('pomodoro-theme')
@@ -111,6 +118,13 @@ onMounted(() => {
             class="nav-btn"
           >
             Insights
+          </button>
+          <button 
+            @click="currentView = 'blog'" 
+            :class="{ active: currentView === 'blog' }"
+            class="nav-btn"
+          >
+            Blog
           </button>
           <button 
             @click="currentView = 'settings'" 
@@ -171,6 +185,7 @@ onMounted(() => {
       <div class="container">
         <PomodoroTimer v-if="currentView === 'timer'" />
         <Insights v-if="currentView === 'insights'" ref="insightsRef" />
+        <Blog v-if="currentView === 'blog'" @switchView="handleViewSwitch" />
         <Settings v-if="currentView === 'settings'" />
         <FAQ v-if="currentView === 'faq'" />
         <About v-if="currentView === 'about'" />

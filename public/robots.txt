@@ -4,10 +4,10 @@ Allow: /
 # Main pages
 Allow: /timer
 Allow: /tasks
+Allow: /blog
 Allow: /insights
 Allow: /settings
 Allow: /about
-Allow: /help
 
 # Static assets
 Allow: /assets/

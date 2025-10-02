@@ -33,6 +33,15 @@
         <mobile:mobile/>
     </url>
     
+    <!-- Blog page -->
+    <url>
+        <loc>https://pomodeepfocus.online/blog</loc>
+        <lastmod>2025-10-02</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+        <mobile:mobile/>
+    </url>
+    
     <!-- Insights page -->
     <url>
         <loc>https://pomodeepfocus.online/insights</loc>
@@ -54,15 +63,6 @@
     <!-- About page -->
     <url>
         <loc>https://pomodeepfocus.online/about</loc>
-        <lastmod>2025-01-31</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.5</priority>
-        <mobile:mobile/>
-    </url>
-    
-    <!-- Help page -->
-    <url>
-        <loc>https://pomodeepfocus.online/help</loc>
         <lastmod>2025-01-31</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.5</priority>
