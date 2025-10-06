@@ -1,0 +1,45 @@
+version: '3.8'
+
+services:
+  pomodoro-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "3000:80"
+    container_name: pomo-timer-podman
+    restart: unless-stopped
+    environment:
+      - NODE_ENV=production
+    volumes:
+      # Optional: Mount logs for debugging
+      - ./logs:/var/log/nginx
+    # Podman-specific labels for systemd integration
+    labels:
+      - "io.containers.autoupdate=registry"
+      - "io.podman.compose.service=pomodoro-app"
+
+  # Development service for Podman
+  pomodoro-dev:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: build-stage  # Use only the build stage for development
+    ports:
+      - "5173:5173"
+    container_name: pomo-dev-podman
+    volumes:
+      - .:/app
+      - /app/node_modules
+    environment:
+      - NODE_ENV=development
+      - VITE_HOST=0.0.0.0
+    command: npm run dev
+    profiles:
+      - dev  # Only start this service when 'dev' profile is specified
+
+# Podman-specific networks (optional)
+networks:
+  default:
+    driver: bridge
+    enable_ipv6: false
