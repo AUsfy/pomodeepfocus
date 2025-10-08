@@ -274,6 +274,7 @@
 <script setup>
 import { ref, computed, onMounted, watch } from 'vue'
 import { useTimer } from '../composables/useTimer.js'
+import { Analytics } from '../utils/analytics.js'
 
 // Use the shared timer composable
 const {
@@ -319,8 +320,16 @@ const activeTask = computed(() => tasks.value.find(task => task.id === activeTas
 const toggleTimer = () => {
   if (isRunning.value) {
     pauseTimer()
+    Analytics.trackEvent('timer_pause', {
+      event_label: getCurrentModeLabel(),
+      time_remaining: timeLeft.value
+    })
   } else {
     startTimer()
+    Analytics.trackEvent('timer_start', {
+      event_label: getCurrentModeLabel(),
+      time_set: currentModeTime.value
+    })
   }
 }
 
@@ -346,6 +355,12 @@ const addTask = () => {
 
   tasks.value.push(newTask)
   
+  // Track task addition
+  Analytics.trackEvent('task_add', {
+    event_label: 'Task Added',
+    estimated_pomodoros: newTask.estimatedPomodoros
+  })
+  
   // Set as active task if it's the first one
   if (tasks.value.length === 1) {
     activeTaskId.value = newTask.id
@@ -361,7 +376,14 @@ const addTask = () => {
 const toggleTask = (taskId) => {
   const task = tasks.value.find(t => t.id === taskId)
   if (task) {
+    const wasCompleted = task.completed
     task.completed = !task.completed
+    
+    // Track task completion
+    Analytics.trackEvent('task_toggle', {
+      event_label: task.completed ? 'Task Completed' : 'Task Uncompleted',
+      task_id: taskId
+    })
     
     // If marking as completed, remove from active
     if (task.completed && activeTaskId.value === taskId) {

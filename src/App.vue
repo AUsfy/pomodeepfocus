@@ -9,6 +9,7 @@ import About from './components/About.vue'
 import Help from './components/Help.vue'
 import { useAuth } from './composables/useAuth.js'
 import { useSEO } from './composables/useSEO.js'
+import { Analytics } from './utils/analytics.js'
 
 const currentView = ref('timer')
 const isDarkMode = ref(false)
@@ -22,6 +23,10 @@ const { setTimerPage, setInsightsPage, setSettingsPage, setHomePage, setFAQPage,
 
 // Watch for view changes and update SEO
 watch(currentView, (newView) => {
+  // Track page view in Google Analytics
+  const pageTitle = `Pomo - ${newView.charAt(0).toUpperCase() + newView.slice(1)}`
+  Analytics.trackPageView(`/${newView}`, pageTitle)
+  
   switch (newView) {
     case 'timer':
       setTimerPage()

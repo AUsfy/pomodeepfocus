@@ -1,22 +1,15 @@
 // Google Analytics and tracking utilities
 export class Analytics {
-  static init(trackingId) {
-    if (typeof window === 'undefined' || !trackingId) return
+  static trackingId = 'G-MY9NYVMQ4X'
+  
+  static init() {
+    // Since gtag is loaded in HTML, we just need to ensure it's available
+    if (typeof window === 'undefined' || !window.gtag) {
+      console.warn('Google Analytics not available')
+      return
+    }
     
-    // Load Google Analytics
-    const script = document.createElement('script')
-    script.async = true
-    script.src = `https://www.googletagmanager.com/gtag/js?id=${trackingId}`
-    document.head.appendChild(script)
-    
-    window.dataLayer = window.dataLayer || []
-    function gtag(){window.dataLayer.push(arguments)}
-    window.gtag = gtag
-    gtag('js', new Date())
-    gtag('config', trackingId, {
-      page_title: document.title,
-      page_location: window.location.href
-    })
+    console.log('📊 Google Analytics initialized with ID:', this.trackingId)
   }
   
   static trackEvent(eventName, parameters = {}) {
@@ -26,15 +19,19 @@ export class Analytics {
       event_category: 'Pomodoro',
       ...parameters
     })
+    
+    console.log('📊 Event tracked:', eventName, parameters)
   }
   
   static trackPageView(pagePath, pageTitle) {
     if (typeof window === 'undefined' || !window.gtag) return
     
-    window.gtag('config', 'GA_TRACKING_ID', {
+    window.gtag('config', this.trackingId, {
       page_path: pagePath,
       page_title: pageTitle
     })
+    
+    console.log('📊 Page view tracked:', pagePath, pageTitle)
   }
   
   // Pomodoro-specific tracking
