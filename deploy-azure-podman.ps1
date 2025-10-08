@@ -13,66 +13,19 @@ param(
 
 $ErrorActionPreference = "Stop"
 
-# Generate unique registry name
-$ContainerRegistryName = "pomoregistry$(Get-Date -Format 'yyyyMMddHHmm')"
-$ImageName = "pomodoro-timer"
-
 Write-Host "🍅 Deploying Pomodoro Timer to Azure Container Apps..." -ForegroundColor Green
 Write-Host "App Name: $AppName" -ForegroundColor Cyan
 Write-Host "Resource Group: $ResourceGroup" -ForegroundColor Cyan
 Write-Host "Location: $Location" -ForegroundColor Cyan
 
 try {
-    # # Step 1: Create Resource Group
-    # Write-Host "📦 Creating resource group..." -ForegroundColor Yellow
-    # az group create --name $ResourceGroup --location $Location
+    # Build Docker image using Podman
+    Write-Host "🐳 Building Docker image with Podman..." -ForegroundColor Yellow
+    podman build -t "$RegistryServer/$ImageName`:latest" .
 
-    # # Step 2: Create Azure Container Registry (minimal SKU)
-    # Write-Host "🐳 Creating Azure Container Registry..." -ForegroundColor Yellow
-    # az acr create `
-    #     --resource-group $ResourceGroup `
-    #     --name $ContainerRegistryName `
-    #     --sku Basic `
-    #     --admin-enabled true
-
-    # # Get registry credentials
-    # Write-Host "🔑 Getting registry credentials..." -ForegroundColor Yellow
-    # $RegistryServer = az acr show --name $ContainerRegistryName --resource-group $ResourceGroup --query loginServer --output tsv
-    # $RegistryUsername = az acr credential show --name $ContainerRegistryName --resource-group $ResourceGroup --query username --output tsv
-    # $RegistryPassword = az acr credential show --name $ContainerRegistryName --resource-group $ResourceGroup --query "passwords[0].value" --output tsv
-
-    # Write-Host "Registry Server: $RegistryServer" -ForegroundColor Cyan
-
-    # # Step 3: Build and push Docker image
-    # Write-Host "🔨 Building and pushing Docker image..." -ForegroundColor Yellow
-    # az acr build `
-    #     --registry $ContainerRegistryName `
-    #     --image "$ImageName`:latest" `
-    #     .
-
-    # Step 4: Create Container Apps Environment
-    # Write-Host "Creating Container Apps Environment..." -ForegroundColor Yellow
-    # az containerapp env create `
-    #     --name $EnvironmentName `
-    #     --resource-group $ResourceGroup `
-    #     --location $Location
-
-    # Step 5: Deploy Container App (minimal resources)
-    # Write-Host "Deploying Container App..." -ForegroundColor Yellow
-    # az containerapp create `
-    #     --name $AppName `
-    #     --resource-group $ResourceGroup `
-    #     --environment $EnvironmentName `
-    #     --image "$RegistryServer/$ImageName`:latest" `
-    #     --registry-server $RegistryServer `
-    #     --registry-username $RegistryUsername `
-    #     --registry-password $RegistryPassword `
-    #     --target-port 80 `
-    #     --ingress external `
-    #     --cpu 0.25 `
-    #     --memory 0.5Gi `
-    #     --min-replicas 0 `
-    #     --max-replicas 2
+    # Push image to registry
+    Write-Host "🚀 Pushing image to registry..." -ForegroundColor Yellow
+    podman push "$RegistryServer/$ImageName`:latest"
     # Update Container App with new image
     Write-Host "🔄 Updating Container App with new image..." -ForegroundColor Yellow
     az containerapp update `
