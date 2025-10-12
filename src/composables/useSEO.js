@@ -52,7 +52,7 @@ export function useSEO() {
 
   // Predefined page configurations
   const setTimerPage = () => {
-    title.value = 'Pomodoro Timer - Focus Sessions | Pomo'
+    title.value = 'Pomodoro Timer for Deep Focus | Time to focus'
     description.value = 'Start your focused work session with Pomo\'s timer. Break down your tasks into 25-minute focused intervals followed by strategic breaks for maximum productivity.'
     keywords.value = 'pomodoro timer, focus session, work timer, productivity timer, 25 minute timer, time blocking'
   }
