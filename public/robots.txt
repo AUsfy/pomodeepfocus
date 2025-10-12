@@ -48,17 +48,17 @@ User-agent: DuckDuckBot
 Allow: /
 
 # Block resource-heavy bots
-User-agent: AhrefsBot
-Disallow: /
-
-User-agent: MJ12bot
-Disallow: /
-
-User-agent: DotBot
-Disallow: /
-
-User-agent: SemrushBot
-Disallow: /
-
+# User-agent: AhrefsBot
+# Disallow: /
+#
+# User-agent: MJ12bot
+# Disallow: /
+#
+# User-agent: DotBot
+# Disallow: /
+#
+# User-agent: SemrushBot
+# Disallow: /
+#
 # Sitemap location
 Sitemap: https://pomodeepfocus.online/sitemap.xml
