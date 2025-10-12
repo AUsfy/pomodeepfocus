@@ -99,7 +99,7 @@ onMounted(() => {
       <div class="container">
         <h1 class="app-title">
           <span class="tomato-icon">🍅</span>
-          Pomo
+          Pomodoro
         </h1>
         
         <nav class="main-nav">

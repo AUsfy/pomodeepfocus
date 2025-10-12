@@ -28,16 +28,22 @@ try {
     podman push "$RegistryServer/$ImageName`:latest"
     # Update Container App with new image
     Write-Host "🔄 Updating Container App with new image..." -ForegroundColor Yellow
+    $date = Get-date
+    Write-Host $date
     az containerapp update `
         --name $AppName `
         --resource-group $ResourceGroup `
-        --image "$RegistryServer/$ImageName`:latest"
+        --image "$RegistryServer/$ImageName`:latest" `
+        --set-env-vars RESTART_TRIGGER=$date #trigger a restart
     # Get the app URL
     $AppUrl = az containerapp show --name $AppName --resource-group $ResourceGroup --query "properties.configuration.ingress.fqdn" --output tsv
 
     Write-Host "`nDeployment completed!" -ForegroundColor Green
     Write-Host "Your Pomodoro Timer is available at: https://$AppUrl" -ForegroundColor Green
 
+    az containerapp restart `
+        --name $AppName `
+        --resource-group $ResourceGroup
     # Display cost-saving information
     Write-Host "`nCost-saving features enabled:" -ForegroundColor Magenta
     Write-Host "   - Basic SKU Container Registry" -ForegroundColor White
