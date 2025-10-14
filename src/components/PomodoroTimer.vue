@@ -268,6 +268,167 @@
         </form>
       </div>
     </div>
+
+    <!-- Help & Guide Section -->
+    <div class="help-guide-section">
+      <div class="help-container">
+        <!-- Method Explanation Section -->
+        <div class="method-explanation">
+          <h2 class="method-title">What is Pomo?</h2>
+          <p class="method-description">
+            Pomo is a free, modern Pomodoro timer designed to help you maximize productivity and maintain focus. 
+            Based on the proven Pomodoro Technique developed by Francesco Cirillo, our app breaks your work into 
+            manageable 25-minute focused sessions followed by refreshing breaks.
+          </p>
+        </div>
+
+        <h2 class="help-title">How to Get Started</h2>
+        <p class="help-description">
+          Master the Pomodoro Technique with our complete guide. Learn everything you need to boost your productivity and maintain focus.
+        </p>
+
+        <div class="quick-start-grid">
+          <div class="quick-start-card">
+            <div class="card-icon">🚀</div>
+            <h3>Quick Start</h3>
+            <ol class="quick-steps">
+              <li>Add a task (optional)</li>
+              <li>Click "Start Focus"</li>
+              <li>Work for 25 minutes</li>
+              <li>Take a 5-minute break</li>
+              <li>Repeat for maximum productivity</li>
+            </ol>
+          </div>
+
+          <div class="quick-start-card">
+            <div class="card-icon">⚙️</div>
+            <h3>Customize Settings</h3>
+            <ul class="feature-highlights">
+              <li><strong>Timer Duration:</strong> 15-60 minutes</li>
+              <li><strong>Break Length:</strong> 3-15 minutes</li>
+              <li><strong>Auto-start:</strong> Seamless sessions</li>
+              <li><strong>Notifications:</strong> Sound alerts</li>
+              <li><strong>Dark Mode:</strong> Easy on the eyes</li>
+            </ul>
+          </div>
+
+          <div class="quick-start-card">
+            <div class="card-icon">📊</div>
+            <h3>Track Progress</h3>
+            <ul class="feature-highlights">
+              <li><strong>Daily Stats:</strong> Sessions completed</li>
+              <li><strong>Task Tracking:</strong> Time per project</li>
+              <li><strong>Weekly Trends:</strong> Productivity patterns</li>
+              <li><strong>Focus Time:</strong> Total work hours</li>
+              <li><strong>Goals:</strong> Set and achieve targets</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="help-content-sections">
+          <div class="help-section">
+            <h3 class="section-title">Why the Pomodoro Technique Works</h3>
+            <div class="benefits-grid">
+              <div class="benefit-item">
+                <span class="benefit-icon">🧠</span>
+                <div class="benefit-content">
+                  <h4>Improved Focus</h4>
+                  <p>Short bursts of concentrated work help maintain attention and reduce distractions.</p>
+                </div>
+              </div>
+              <div class="benefit-item">
+                <span class="benefit-icon">⚡</span>
+                <div class="benefit-content">
+                  <h4>Reduced Burnout</h4>
+                  <p>Regular breaks prevent mental fatigue and keep your energy levels sustained.</p>
+                </div>
+              </div>
+              <div class="benefit-item">
+                <span class="benefit-icon">📈</span>
+                <div class="benefit-content">
+                  <h4>Better Productivity</h4>
+                  <p>Time-boxing creates urgency and helps you accomplish more in less time.</p>
+                </div>
+              </div>
+              <div class="benefit-item">
+                <span class="benefit-icon">🎯</span>
+                <div class="benefit-content">
+                  <h4>Clear Goals</h4>
+                  <p>Breaking work into focused sessions makes large tasks feel more manageable.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="help-section">
+            <h3 class="section-title">Advanced Tips for Success</h3>
+            <div class="tips-container">
+              <div class="tip-card">
+                <h4>🎯 Plan Your Day</h4>
+                <p>Start each day by listing your tasks and estimating how many pomodoros each will take. This helps you set realistic goals and track progress.</p>
+              </div>
+              <div class="tip-card">
+                <h4>🔕 Eliminate Distractions</h4>
+                <p>During focus sessions, put your phone in airplane mode, close unnecessary browser tabs, and let others know you're in a focused work period.</p>
+              </div>
+              <div class="tip-card">
+                <h4>🏃‍♂️ Use Breaks Wisely</h4>
+                <p>Stand up, stretch, hydrate, or do light exercises. Avoid activities that might extend your break time or reduce your next session's focus.</p>
+              </div>
+              <div class="tip-card">
+                <h4>📊 Review Your Data</h4>
+                <p>Check your insights weekly to identify patterns, understand your peak productivity hours, and adjust your schedule accordingly.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="help-section">
+            <h3 class="section-title">Frequently Asked Questions</h3>
+            <div class="faq-container">
+              <details class="faq-item">
+                <summary class="faq-question">What if I get interrupted during a pomodoro?</summary>
+                <div class="faq-answer">
+                  <p>If the interruption is urgent, you can pause the timer and resume later. For non-urgent interruptions, note them down and address them during your break. The key is to minimize interruptions and protect your focus time.</p>
+                </div>
+              </details>
+              <details class="faq-item">
+                <summary class="faq-question">Can I adjust the 25-minute sessions?</summary>
+                <div class="faq-answer">
+                  <p>Absolutely! While 25 minutes is the traditional length, you can customize timer durations in Settings. Some people prefer 45-minute sessions, while others work better with 15-minute intervals. Find what works for you.</p>
+                </div>
+              </details>
+              <details class="faq-item">
+                <summary class="faq-question">How many pomodoros should I aim for per day?</summary>
+                <div class="faq-answer">
+                  <p>Start with 4-6 pomodoros per day and adjust based on your workload and energy levels. Most people find 8-12 sessions achievable on a full work day, but quality matters more than quantity.</p>
+                </div>
+              </details>
+              <details class="faq-item">
+                <summary class="faq-question">What should I do during breaks?</summary>
+                <div class="faq-answer">
+                  <p>Use breaks to rest your mind and body. Stand up, stretch, hydrate, take deep breaths, or look away from your screen. Avoid activities that require intense focus or might make you lose track of time.</p>
+                </div>
+              </details>
+            </div>
+          </div>
+        </div>
+
+        <div class="get-started-cta">
+          <h3>Ready to Boost Your Productivity?</h3>
+          <p>Start your first pomodoro session now and experience the power of focused work!</p>
+          <div class="cta-buttons">
+            <button @click="scrollToTimer" class="btn btn-primary">
+              <span class="btn-icon">🍅</span>
+              Start Your First Session
+            </button>
+            <button @click="emit('switchView', 'settings')" class="btn btn-secondary">
+              <span class="btn-icon">⚙️</span>
+              Customize Settings
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -275,6 +436,18 @@
 import { ref, computed, onMounted, watch } from 'vue'
 import { useTimer } from '../composables/useTimer.js'
 import { Analytics } from '../utils/analytics.js'
+import { useSEO } from '../composables/useSEO.js'
+
+// SEO Optimization for Timer Page
+useSEO({
+  title: 'Pomodoro Timer - Focus & Productivity Tool | Pomo',
+  description: 'Free online Pomodoro timer to boost productivity and focus. Work in 25-minute sessions with 5-minute breaks. Track tasks, customize settings, and improve your time management with our proven technique.',
+  keywords: 'pomodoro timer, productivity timer, focus timer, time management, work sessions, break timer, task tracker, productivity tool, concentration aid, study timer, work from home, time blocking',
+  ogTitle: 'Pomo - The Ultimate Pomodoro Timer for Productivity',
+  ogDescription: 'Boost your focus and productivity with our free Pomodoro timer. Perfect for students, professionals, and anyone looking to improve their time management skills.',
+  twitterTitle: 'Pomo Pomodoro Timer - Stay Focused & Productive',
+  twitterDescription: 'Free online Pomodoro timer with task tracking, custom settings, and productivity insights. Start your focused work sessions now!'
+})
 
 // Use the shared timer composable
 const {
@@ -481,6 +654,20 @@ watch(completedSessions, (newValue, oldValue) => {
     completePomodoro()
   }
 })
+
+// Help section navigation functions
+const emit = defineEmits(['switchView'])
+
+const scrollToTimer = () => {
+  const timerElement = document.querySelector('.timer-display')
+  if (timerElement) {
+    timerElement.scrollIntoView({ behavior: 'smooth', block: 'center' })
+  }
+}
+
+const currentView = (view) => {
+  emit('switchView', view)
+}
 
 // Initialize on mount
 onMounted(() => {
@@ -1191,6 +1378,407 @@ onMounted(() => {
   
   .step-text {
     font-size: var(--font-size-xs);
+  }
+}
+
+/* Help & Guide Section Styles */
+.help-guide-section {
+  margin-top: var(--spacing-2xl);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+
+.help-container {
+  padding: var(--spacing-2xl);
+}
+
+/* Method Explanation Section */
+.method-explanation {
+  background: linear-gradient(135deg, var(--surface), var(--background));
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-2xl);
+  margin-bottom: var(--spacing-2xl);
+  text-align: center;
+}
+
+.method-title {
+  font-size: var(--font-size-2xl);
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: var(--spacing-md);
+}
+
+.method-description {
+  font-size: var(--font-size-lg);
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin-bottom: var(--spacing-xl);
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.help-title {
+  font-size: var(--font-size-3xl);
+  font-weight: 700;
+  color: var(--text-primary);
+  text-align: center;
+  margin-bottom: var(--spacing-md);
+}
+
+.help-description {
+  font-size: var(--font-size-lg);
+  color: var(--text-secondary);
+  text-align: center;
+  margin-bottom: var(--spacing-2xl);
+  line-height: 1.6;
+}
+
+.quick-start-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--spacing-lg);
+  margin-bottom: var(--spacing-2xl);
+}
+
+.quick-start-card {
+  background: var(--surface-elevated);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-xl);
+  text-align: center;
+  transition: all var(--transition-fast);
+}
+
+.quick-start-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+  border-color: var(--primary-color);
+}
+
+.card-icon {
+  font-size: 3rem;
+  margin-bottom: var(--spacing-md);
+}
+
+.quick-start-card h3 {
+  font-size: var(--font-size-xl);
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: var(--spacing-md);
+}
+
+.quick-steps {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  text-align: left;
+}
+
+.quick-steps li {
+  padding: var(--spacing-sm) 0;
+  color: var(--text-secondary);
+  position: relative;
+  padding-left: var(--spacing-lg);
+  counter-increment: step-counter;
+}
+
+.quick-steps {
+  counter-reset: step-counter;
+}
+
+.quick-steps li::before {
+  content: counter(step-counter);
+  position: absolute;
+  left: 0;
+  top: var(--spacing-sm);
+  background: var(--primary-color);
+  color: white;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--font-size-xs);
+  font-weight: 600;
+}
+
+.feature-highlights {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  text-align: left;
+}
+
+.feature-highlights li {
+  padding: var(--spacing-xs) 0;
+  color: var(--text-secondary);
+  position: relative;
+  padding-left: var(--spacing-lg);
+}
+
+.feature-highlights li::before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  top: var(--spacing-xs);
+  color: var(--secondary-color);
+  font-weight: 600;
+}
+
+.help-content-sections {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-2xl);
+}
+
+.help-section {
+  background: var(--background);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-xl);
+}
+
+.section-title {
+  font-size: var(--font-size-2xl);
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: var(--spacing-lg);
+  text-align: center;
+}
+
+.benefits-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: var(--spacing-lg);
+}
+
+.benefit-item {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--spacing-md);
+  padding: var(--spacing-md);
+  background: var(--surface);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border);
+}
+
+.benefit-icon {
+  font-size: var(--font-size-2xl);
+  flex-shrink: 0;
+}
+
+.benefit-content h4 {
+  font-size: var(--font-size-lg);
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: var(--spacing-xs);
+}
+
+.benefit-content p {
+  color: var(--text-secondary);
+  line-height: 1.5;
+  margin: 0;
+}
+
+.tips-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: var(--spacing-lg);
+}
+
+.tip-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: var(--spacing-lg);
+  transition: all var(--transition-fast);
+}
+
+.tip-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--accent-blue);
+}
+
+.tip-card h4 {
+  font-size: var(--font-size-lg);
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: var(--spacing-sm);
+}
+
+.tip-card p {
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin: 0;
+}
+
+.faq-container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+}
+
+.faq-item {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+}
+
+.faq-question {
+  padding: var(--spacing-lg);
+  font-size: var(--font-size-lg);
+  font-weight: 500;
+  color: var(--text-primary);
+  cursor: pointer;
+  user-select: none;
+  transition: all var(--transition-fast);
+  background: var(--surface-elevated);
+  list-style: none;
+}
+
+.faq-question:hover {
+  background: var(--surface-hover);
+  color: var(--primary-color);
+}
+
+.faq-question::marker {
+  display: none;
+}
+
+.faq-question::after {
+  content: '+';
+  float: right;
+  font-size: var(--font-size-xl);
+  font-weight: 600;
+  transition: transform var(--transition-fast);
+}
+
+.faq-item[open] .faq-question::after {
+  transform: rotate(45deg);
+}
+
+.faq-answer {
+  padding: 0 var(--spacing-lg) var(--spacing-lg);
+}
+
+.faq-answer p {
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin: 0;
+}
+
+.get-started-cta {
+  background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
+  color: white;
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-2xl);
+  text-align: center;
+  margin-top: var(--spacing-2xl);
+}
+
+.get-started-cta h3 {
+  font-size: var(--font-size-2xl);
+  font-weight: 600;
+  margin-bottom: var(--spacing-md);
+}
+
+.get-started-cta p {
+  font-size: var(--font-size-lg);
+  margin-bottom: var(--spacing-xl);
+  opacity: 0.9;
+}
+
+.cta-buttons {
+  display: flex;
+  justify-content: center;
+  gap: var(--spacing-md);
+  flex-wrap: wrap;
+}
+
+.cta-buttons .btn {
+  min-width: 180px;
+}
+
+.cta-buttons .btn-secondary {
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.cta-buttons .btn-secondary:hover {
+  background: rgba(255, 255, 255, 0.3);
+  transform: translateY(-2px);
+}
+
+/* Mobile responsiveness for help section */
+@media (max-width: 768px) {
+  .help-container {
+    padding: var(--spacing-lg);
+  }
+  
+  .method-explanation {
+    padding: var(--spacing-lg);
+    margin-bottom: var(--spacing-xl);
+  }
+  
+  .method-title {
+    font-size: var(--font-size-xl);
+  }
+  
+  .method-description {
+    font-size: var(--font-size-base);
+  }
+  
+  .help-title {
+    font-size: var(--font-size-2xl);
+  }
+  
+  .help-description {
+    font-size: var(--font-size-base);
+  }
+  
+  .quick-start-grid {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-md);
+  }
+  
+  .quick-start-card {
+    padding: var(--spacing-lg);
+  }
+  
+  .benefits-grid,
+  .tips-container {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-md);
+  }
+  
+  .section-title {
+    font-size: var(--font-size-xl);
+  }
+  
+  .get-started-cta {
+    padding: var(--spacing-xl);
+  }
+  
+  .get-started-cta h3 {
+    font-size: var(--font-size-xl);
+  }
+  
+  .cta-buttons {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .cta-buttons .btn {
+    width: 100%;
+    max-width: 280px;
   }
 }
 </style>

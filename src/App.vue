@@ -6,7 +6,7 @@ import Insights from './components/Insights.vue'
 import Login from './components/Login.vue'
 import FAQ from './components/FAQ.vue'
 import About from './components/About.vue'
-import Help from './components/Help.vue'
+import CookieConsent from './components/CookieConsent.vue'
 import { useAuth } from './composables/useAuth.js'
 import { useSEO } from './composables/useSEO.js'
 import { Analytics } from './utils/analytics.js'
@@ -19,7 +19,7 @@ const showLoginModal = ref(false)
 const { user, isAuthenticated, loadStoredUser, logout } = useAuth()
 
 // SEO Management
-const { setTimerPage, setInsightsPage, setSettingsPage, setHomePage, setFAQPage, setAboutPage, setHelpPage } = useSEO()
+const { setTimerPage, setInsightsPage, setSettingsPage, setHomePage, setFAQPage, setAboutPage } = useSEO()
 
 // Watch for view changes and update SEO
 watch(currentView, (newView) => {
@@ -43,9 +43,6 @@ watch(currentView, (newView) => {
     case 'about':
       setAboutPage()
       break
-    case 'help':
-      setHelpPage()
-      break
     default:
       setHomePage()
   }
@@ -56,6 +53,11 @@ const toggleTheme = () => {
   isDarkMode.value = !isDarkMode.value
   document.documentElement.setAttribute('data-theme', isDarkMode.value ? 'dark' : 'light')
   localStorage.setItem('pomodoro-theme', isDarkMode.value ? 'dark' : 'light')
+}
+
+// Navigation
+const switchToView = (view) => {
+  currentView.value = view
 }
 
 // Authentication handlers
@@ -104,46 +106,39 @@ onMounted(() => {
         
         <nav class="main-nav">
           <button 
-            @click="currentView = 'timer'" 
+            @click="switchToView('timer')" 
             :class="{ active: currentView === 'timer' }"
             class="nav-btn"
           >
             Timer
           </button>
           <button 
-            @click="currentView = 'insights'" 
+            @click="switchToView('insights')" 
             :class="{ active: currentView === 'insights' }"
             class="nav-btn"
           >
             Insights
           </button>
           <button 
-            @click="currentView = 'settings'" 
+            @click="switchToView('settings')" 
             :class="{ active: currentView === 'settings' }"
             class="nav-btn"
           >
             Settings
           </button>
           <button 
-            @click="currentView = 'faq'" 
+            @click="switchToView('faq')" 
             :class="{ active: currentView === 'faq' }"
             class="nav-btn"
           >
             FAQ
           </button>
           <button 
-            @click="currentView = 'about'" 
+            @click="switchToView('about')" 
             :class="{ active: currentView === 'about' }"
             class="nav-btn"
           >
             About
-          </button>
-          <button 
-            @click="currentView = 'help'" 
-            :class="{ active: currentView === 'help' }"
-            class="nav-btn"
-          >
-            Help
           </button>
         </nav>
 
@@ -178,12 +173,11 @@ onMounted(() => {
 
     <main class="main-content">
       <div class="container">
-        <PomodoroTimer v-if="currentView === 'timer'" />
+        <PomodoroTimer v-if="currentView === 'timer'" @switchView="switchToView" />
         <Insights v-if="currentView === 'insights'" ref="insightsRef" />
         <Settings v-if="currentView === 'settings'" />
         <FAQ v-if="currentView === 'faq'" />
         <About v-if="currentView === 'about'" />
-        <Help v-if="currentView === 'help'" />
       </div>
     </main>
 
