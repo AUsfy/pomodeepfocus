@@ -41,9 +41,6 @@ try {
     Write-Host "`nDeployment completed!" -ForegroundColor Green
     Write-Host "Your Pomodoro Timer is available at: https://$AppUrl" -ForegroundColor Green
 
-    az containerapp restart `
-        --name $AppName `
-        --resource-group $ResourceGroup
     # Display cost-saving information
     Write-Host "`nCost-saving features enabled:" -ForegroundColor Magenta
     Write-Host "   - Basic SKU Container Registry" -ForegroundColor White
