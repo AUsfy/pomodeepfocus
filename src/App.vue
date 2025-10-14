@@ -159,8 +159,12 @@ onMounted(() => {
             </button>
           </div>
           
-          <!-- Sign in button (if not authenticated) -->
-          <button v-else @click="showLogin" class="sign-in-btn">
+          <!-- Sign in button (if not authenticated) - Disabled until authentication is implemented -->
+          <button 
+            v-if="false && !isAuthenticated"
+            @click="showLogin" 
+            class="sign-in-btn"
+          >
             <span class="sign-in-icon">🔐</span>
             Sign In
           </button>
