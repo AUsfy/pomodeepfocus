@@ -277,7 +277,7 @@
           <h2 class="method-title">What is Pomo?</h2>
           <p class="method-description">
             Pomo is a free, modern Pomodoro timer designed to help you maximize productivity and maintain focus. 
-            Based on the proven Pomodoro Technique developed by Francesco Cirillo, our app breaks your work into 
+            Based on the proven <a href="https://en.wikipedia.org/wiki/Pomodoro_Technique" target="_blank" rel="noopener noreferrer" class="technique-link">Pomodoro Technique</a> developed by Francesco Cirillo, our app breaks your work into 
             manageable 25-minute focused sessions followed by refreshing breaks.
           </p>
         </div>
@@ -1419,6 +1419,18 @@ onMounted(() => {
   max-width: 800px;
   margin-left: auto;
   margin-right: auto;
+}
+
+.technique-link {
+  color: #0066cc;
+  text-decoration: underline;
+  border-bottom: none;
+  transition: all var(--transition-fast);
+}
+
+.technique-link:hover {
+  color: #004499;
+  text-decoration: underline;
 }
 
 .help-title {
