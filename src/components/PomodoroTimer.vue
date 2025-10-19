@@ -1,34 +1,5 @@
 <template>
   <div class="pomodoro-timer">
-    <!-- Pomodoro Description Section -->
-    <div class="pomodoro-description">
-      <div class="description-content">
-        <h2 class="description-title">The Pomodoro Technique</h2>
-        <p class="description-text">
-          Work in focused 25-minute sessions followed by 5-minute breaks. After 4 sessions, take a longer 15-30 minute break. 
-          This proven method helps improve focus, reduce mental fatigue, and boost productivity.
-        </p>
-        <div class="technique-steps">
-          <div class="step">
-            <span class="step-icon">🍅</span>
-            <span class="step-text">25 min work</span>
-          </div>
-          <div class="step">
-            <span class="step-icon">☕</span>
-            <span class="step-text">5 min break</span>
-          </div>
-          <div class="step">
-            <span class="step-icon">🔄</span>
-            <span class="step-text">Repeat 4x</span>
-          </div>
-          <div class="step">
-            <span class="step-icon">🏖️</span>
-            <span class="step-text">Long break</span>
-          </div>
-        </div>
-      </div>
-    </div>
-
     <!-- Timer Section -->
     <div class="timer-modes">
       <button 
@@ -125,6 +96,35 @@
       <div class="counter-content">
         <span class="counter-number">{{ completedSessions }}</span>
         <span class="counter-label">{{ completedSessions === 1 ? 'session' : 'sessions' }} completed</span>
+      </div>
+    </div>
+
+    <!-- Pomodoro Description Section -->
+    <div class="pomodoro-description">
+      <div class="description-content">
+        <h2 class="description-title">The Pomodoro Technique</h2>
+        <p class="description-text">
+          Work in focused 25-minute sessions followed by 5-minute breaks. After 4 sessions, take a longer 15-30 minute break. 
+          This proven method helps improve focus, reduce mental fatigue, and boost productivity.
+        </p>
+        <div class="technique-steps">
+          <div class="step">
+            <span class="step-icon">🍅</span>
+            <span class="step-text">25 min work</span>
+          </div>
+          <div class="step">
+            <span class="step-icon">☕</span>
+            <span class="step-text">5 min break</span>
+          </div>
+          <div class="step">
+            <span class="step-icon">🔄</span>
+            <span class="step-text">Repeat 4x</span>
+          </div>
+          <div class="step">
+            <span class="step-icon">🏖️</span>
+            <span class="step-text">Long break</span>
+          </div>
+        </div>
       </div>
     </div>
 
