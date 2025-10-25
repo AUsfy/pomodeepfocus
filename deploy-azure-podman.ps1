@@ -21,7 +21,13 @@ Write-Host "Location: $Location" -ForegroundColor Cyan
 try {
     # Build Docker image using Podman
     Write-Host "🐳 Building Docker image with Podman..." -ForegroundColor Yellow
+    # Check if Podman is running
+    
     podman build -t "$RegistryServer/$ImageName`:latest" .
+    if (-not $?) {
+        Write-Host "Podman build failed." -ForegroundColor Red
+        exit 1
+    }
 
     # Push image to registry
     Write-Host "🚀 Pushing image to registry..." -ForegroundColor Yellow

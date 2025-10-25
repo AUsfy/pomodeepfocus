@@ -409,6 +409,72 @@
                   <p>Use breaks to rest your mind and body. Stand up, stretch, hydrate, take deep breaths, or look away from your screen. Avoid activities that require intense focus or might make you lose track of time.</p>
                 </div>
               </details>
+              <details class="faq-item">
+                <summary class="faq-question">What is the Pomodoro Technique?</summary>
+                <div class="faq-answer">
+                  <p>The Pomodoro Technique is a time management method developed by Francesco Cirillo in the late 1980s. It involves working in focused 25-minute intervals (called 'pomodoros') followed by 5-minute breaks. After completing 4 pomodoros, you take a longer break of 15-30 minutes. This technique helps improve focus, reduce mental fatigue, and boost productivity.</p>
+                </div>
+              </details>
+              <details class="faq-item">
+                <summary class="faq-question">Is Pomo timer free to use?</summary>
+                <div class="faq-answer">
+                  <p>Yes, Pomo is completely free to use forever. There are no hidden fees, premium subscriptions, or locked features. We believe productivity tools should be accessible to everyone.</p>
+                </div>
+              </details>
+              <details class="faq-item">
+                <summary class="faq-question">Do I need to create an account to use Pomo?</summary>
+                <div class="faq-answer">
+                  <p>No account is required to start using Pomo immediately. All your data is stored locally in your browser. However, you can optionally sign in to sync your tasks and progress across multiple devices.</p>
+                </div>
+              </details>
+              <details class="faq-item">
+                <summary class="faq-question">How does the task management feature work?</summary>
+                <div class="faq-answer">
+                  <p>You can add, edit, and organize your tasks directly in Pomo. When you start a timer session, you can associate it with a specific task to track how much time you spend on different activities. This helps you understand your productivity patterns and estimate time for future tasks.</p>
+                </div>
+              </details>
+              <details class="faq-item">
+                <summary class="faq-question">What browsers are supported?</summary>
+                <div class="faq-answer">
+                  <p>Pomo works in all modern web browsers including Chrome, Firefox, Safari, and Edge. It's also mobile-friendly and works great on smartphones and tablets.</p>
+                </div>
+              </details>
+              <details class="faq-item">
+                <summary class="faq-question">Does Pomo work offline?</summary>
+                <div class="faq-answer">
+                  <p>Yes, once you load Pomo in your browser, it works offline. Your timer will continue running and your tasks will be saved locally even without an internet connection.</p>
+                </div>
+              </details>
+              <details class="faq-item">
+                <summary class="faq-question">Can I use Pomo for studying?</summary>
+                <div class="faq-answer">
+                  <p>Definitely! The Pomodoro Technique is excellent for studying. Many students use Pomo to break study sessions into manageable chunks, maintain focus during long study periods, and track their study time across different subjects.</p>
+                </div>
+              </details>
+              <details class="faq-item">
+                <summary class="faq-question">How do I track my productivity over time?</summary>
+                <div class="faq-answer">
+                  <p>The Insights page shows your productivity statistics including total focus time, completed sessions, and daily/weekly trends. This helps you understand your productivity patterns and stay motivated.</p>
+                </div>
+              </details>
+              <details class="faq-item">
+                <summary class="faq-question">Can I change the notification sounds?</summary>
+                <div class="faq-answer">
+                  <p>Yes, you can customize notification sounds or turn them off completely in the Settings page. You can also adjust the volume to suit your environment.</p>
+                </div>
+              </details>
+              <details class="faq-item">
+                <summary class="faq-question">Is there a mobile app?</summary>
+                <div class="faq-answer">
+                  <p>Pomo is a Progressive Web App (PWA), which means you can install it on your phone or desktop directly from your browser. It will work like a native app with offline capabilities and notifications.</p>
+                </div>
+              </details>
+              <details class="faq-item">
+                <summary class="faq-question">How do I report bugs or suggest features?</summary>
+                <div class="faq-answer">
+                  <p>We welcome feedback! You can contact us through our GitHub repository or support channels. We actively work on improving Pomo based on user suggestions.</p>
+                </div>
+              </details>
             </div>
           </div>
         </div>

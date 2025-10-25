@@ -4,7 +4,6 @@ import PomodoroTimer from './components/PomodoroTimer.vue'
 import Settings from './components/Settings.vue'
 import Insights from './components/Insights.vue'
 import Login from './components/Login.vue'
-import FAQ from './components/FAQ.vue'
 import About from './components/About.vue'
 import CookieConsent from './components/CookieConsent.vue'
 import { useAuth } from './composables/useAuth.js'
@@ -19,7 +18,7 @@ const showLoginModal = ref(false)
 const { user, isAuthenticated, loadStoredUser, logout } = useAuth()
 
 // SEO Management
-const { setTimerPage, setInsightsPage, setSettingsPage, setHomePage, setFAQPage, setAboutPage } = useSEO()
+const { setTimerPage, setInsightsPage, setSettingsPage, setHomePage, setAboutPage } = useSEO()
 
 // Watch for view changes and update SEO
 watch(currentView, (newView) => {
@@ -36,9 +35,6 @@ watch(currentView, (newView) => {
       break
     case 'settings':
       setSettingsPage()
-      break
-    case 'faq':
-      setFAQPage()
       break
     case 'about':
       setAboutPage()
@@ -101,7 +97,7 @@ onMounted(() => {
       <div class="container">
         <h1 class="app-title">
           <span class="tomato-icon">🍅</span>
-          Pomodoro
+          Pomodoro Timer
         </h1>
         
         <nav class="main-nav">
@@ -125,13 +121,6 @@ onMounted(() => {
             class="nav-btn"
           >
             Settings
-          </button>
-          <button 
-            @click="switchToView('faq')" 
-            :class="{ active: currentView === 'faq' }"
-            class="nav-btn"
-          >
-            FAQ
           </button>
           <button 
             @click="switchToView('about')" 
@@ -176,7 +165,6 @@ onMounted(() => {
         <PomodoroTimer v-if="currentView === 'timer'" @switchView="switchToView" />
         <Insights v-if="currentView === 'insights'" ref="insightsRef" />
         <Settings v-if="currentView === 'settings'" />
-        <FAQ v-if="currentView === 'faq'" />
         <About v-if="currentView === 'about'" />
       </div>
     </main>
