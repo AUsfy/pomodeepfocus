@@ -280,6 +280,24 @@
             Based on the proven <a href="https://en.wikipedia.org/wiki/Pomodoro_Technique" target="_blank" rel="noopener noreferrer" class="technique-link">Pomodoro Technique</a> developed by Francesco Cirillo, our app breaks your work into 
             manageable 25-minute focused sessions followed by refreshing breaks.
           </p>
+          <p class="method-description-extended">
+            Whether you're a student preparing for exams, a professional managing projects, or a creative pursuing your passion, 
+            Pomo empowers you to overcome procrastination and achieve deep work states. Our scientifically-backed approach combines 
+            time-blocking with strategic breaks to optimize your cognitive performance, reduce stress, and maintain productivity 
+            throughout your day. With features like task tracking, basic analytics, and customizable settings, Pomo transforms 
+            the way you work and helps you accomplish more with less effort.
+          </p>
+          <div class="key-features">
+            <h4 class="features-title">Key Features:</h4>
+            <ul class="features-list">
+              <li><strong>Smart Timer:</strong> Customizable work and break intervals (15-60 minutes)</li>
+              <li><strong>Task Management:</strong> Organize, track, and estimate time for your projects</li>
+              <li><strong>Basic Analytics:</strong> Track your daily progress and completed sessions</li>
+              <li><strong>Focus Sessions:</strong> Distraction-free environment with visual progress indicators</li>
+              <li><strong>Local Storage:</strong> Your data is saved securely in your browser</li>
+              <li><strong>No Registration Required:</strong> Start using immediately without creating an account</li>
+            </ul>
+          </div>
         </div>
 
         <h2 class="help-title">How to Get Started</h2>
@@ -318,9 +336,9 @@
             <ul class="feature-highlights">
               <li><strong>Daily Stats:</strong> Sessions completed</li>
               <li><strong>Task Tracking:</strong> Time per project</li>
-              <li><strong>Weekly Trends:</strong> Productivity patterns</li>
+              <li><strong>Progress History:</strong> View past activity</li>
               <li><strong>Focus Time:</strong> Total work hours</li>
-              <li><strong>Goals:</strong> Set and achieve targets</li>
+              <li><strong>Session Counter:</strong> Track your streaks</li>
             </ul>
           </div>
         </div>
@@ -360,6 +378,124 @@
             </div>
           </div>
 
+          <!-- Enhanced Benefits Section for SEO -->
+          <div class="help-section">
+            <h3 class="section-title">Unlock Your Potential: Benefits of Using Pomo</h3>
+            <div class="comprehensive-benefits">
+              <div class="benefit-category">
+                <h4 class="category-title">🎯 Focus & Concentration</h4>
+                <div class="benefit-details">
+                  <div class="benefit-point">
+                    <strong>Enhanced Deep Work:</strong> Achieve flow states faster and maintain concentration for extended periods without mental fatigue.
+                  </div>
+                  <div class="benefit-point">
+                    <strong>Distraction Management:</strong> Train your brain to resist interruptions and maintain laser-sharp focus on your priorities.
+                  </div>
+                  <div class="benefit-point">
+                    <strong>Attention Span Improvement:</strong> Gradually increase your ability to concentrate through consistent practice and structured work sessions.
+                  </div>
+                </div>
+              </div>
+
+              <div class="benefit-category">
+                <h4 class="category-title">⚡ Productivity & Efficiency</h4>
+                <div class="benefit-details">
+                  <div class="benefit-point">
+                    <strong>40% Productivity Boost:</strong> Research shows users complete tasks faster and with higher quality when using the Pomodoro Technique.
+                  </div>
+                  <div class="benefit-point">
+                    <strong>Time Awareness:</strong> Develop better estimation skills and understand how long tasks actually take to complete.
+                  </div>
+                  <div class="benefit-point">
+                    <strong>Deadline Management:</strong> Break large projects into manageable chunks and meet deadlines with confidence.
+                  </div>
+                </div>
+              </div>
+
+              <div class="benefit-category">
+                <h4 class="category-title">🧘 Mental Health & Wellbeing</h4>
+                <div class="benefit-details">
+                  <div class="benefit-point">
+                    <strong>Stress Reduction:</strong> Regular breaks prevent overwhelm and maintain healthy stress levels throughout your workday.
+                  </div>
+                  <div class="benefit-point">
+                    <strong>Burnout Prevention:</strong> Sustainable work rhythms protect against mental exhaustion and maintain long-term productivity.
+                  </div>
+                  <div class="benefit-point">
+                    <strong>Work-Life Balance:</strong> Clear boundaries between work and rest help you disconnect and recharge effectively.
+                  </div>
+                </div>
+              </div>
+
+              <div class="benefit-category">
+                <h4 class="category-title">📈 Learning & Development</h4>
+                <div class="benefit-details">
+                  <div class="benefit-point">
+                    <strong>Improved Retention:</strong> Spaced learning sessions enhance memory consolidation and long-term information retention.
+                  </div>
+                  <div class="benefit-point">
+                    <strong>Skill Building:</strong> Consistent practice sessions accelerate skill development and expertise acquisition.
+                  </div>
+                  <div class="benefit-point">
+                    <strong>Creative Problem Solving:</strong> Break periods allow subconscious processing, leading to breakthrough insights and solutions.
+                  </div>
+                </div>
+              </div>
+
+              <div class="benefit-category">
+                <h4 class="category-title">🏢 Professional Benefits</h4>
+                <div class="benefit-details">
+                  <div class="benefit-point">
+                    <strong>Remote Work Excellence:</strong> Structure your home office environment for maximum productivity and professional success.
+                  </div>
+                  <div class="benefit-point">
+                    <strong>Meeting Efficiency:</strong> Use focused time blocks for preparation and follow-up to make meetings more productive.
+                  </div>
+                  <div class="benefit-point">
+                    <strong>Client Deliverables:</strong> Track time accurately for billing purposes and deliver high-quality work consistently.
+                  </div>
+                </div>
+              </div>
+
+              <div class="benefit-category">
+                <h4 class="category-title">🎓 Academic Success</h4>
+                <div class="benefit-details">
+                  <div class="benefit-point">
+                    <strong>Study Optimization:</strong> Transform long, overwhelming study sessions into manageable, effective learning periods.
+                  </div>
+                  <div class="benefit-point">
+                    <strong>Exam Preparation:</strong> Build confidence through structured review sessions and consistent progress tracking.
+                  </div>
+                  <div class="benefit-point">
+                    <strong>Research Efficiency:</strong> Maintain focus during literature reviews, data analysis, and academic writing projects.
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="success-stats">
+              <h4 class="stats-title">Why Users Love Pomo:</h4>
+              <div class="stats-grid">
+                <div class="stat-item">
+                  <span class="stat-number">25min</span>
+                  <span class="stat-label">Optimal Focus Time</span>
+                </div>
+                <div class="stat-item">
+                  <span class="stat-number">5min</span>
+                  <span class="stat-label">Perfect Break Length</span>
+                </div>
+                <div class="stat-item">
+                  <span class="stat-number">Free</span>
+                  <span class="stat-label">No Cost Ever</span>
+                </div>
+                <div class="stat-item">
+                  <span class="stat-number">1986</span>
+                  <span class="stat-label">Technique Developed</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
           <div class="help-section">
             <h3 class="section-title">Advanced Tips for Success</h3>
             <div class="tips-container">
@@ -377,7 +513,7 @@
               </div>
               <div class="tip-card">
                 <h4>📊 Review Your Data</h4>
-                <p>Check your insights weekly to identify patterns, understand your peak productivity hours, and adjust your schedule accordingly.</p>
+                <p>Check your insights regularly to track your daily progress, review your completed sessions, and stay motivated with your productivity journey.</p>
               </div>
             </div>
           </div>
@@ -424,13 +560,13 @@
               <details class="faq-item">
                 <summary class="faq-question">Do I need to create an account to use Pomo?</summary>
                 <div class="faq-answer">
-                  <p>No account is required to start using Pomo immediately. All your data is stored locally in your browser. However, you can optionally sign in to sync your tasks and progress across multiple devices.</p>
+                  <p>No account is required to start using Pomo! All your data is stored locally in your browser, so you can begin being productive immediately. Your tasks, settings, and progress are automatically saved as you work.</p>
                 </div>
               </details>
               <details class="faq-item">
                 <summary class="faq-question">How does the task management feature work?</summary>
                 <div class="faq-answer">
-                  <p>You can add, edit, and organize your tasks directly in Pomo. When you start a timer session, you can associate it with a specific task to track how much time you spend on different activities. This helps you understand your productivity patterns and estimate time for future tasks.</p>
+                  <p>You can add, edit, and organize your tasks directly in Pomo. When you start a timer session, you can associate it with a specific task to track how much time you spend on different activities. This helps you stay organized and estimate time for future tasks.</p>
                 </div>
               </details>
               <details class="faq-item">
@@ -454,7 +590,7 @@
               <details class="faq-item">
                 <summary class="faq-question">How do I track my productivity over time?</summary>
                 <div class="faq-answer">
-                  <p>The Insights page shows your productivity statistics including total focus time, completed sessions, and daily/weekly trends. This helps you understand your productivity patterns and stay motivated.</p>
+                  <p>The Insights page shows your productivity statistics including total focus time, completed sessions, and daily progress. This helps you track your activity and stay motivated on your productivity journey.</p>
                 </div>
               </details>
               <details class="faq-item">
@@ -1857,6 +1993,196 @@ onMounted(() => {
   .cta-buttons .btn {
     width: 100%;
     max-width: 280px;
+  }
+}
+
+/* Enhanced Method Explanation Styles */
+.method-description-extended {
+  font-size: var(--font-size-base);
+  color: var(--text-secondary);
+  line-height: 1.7;
+  margin-bottom: var(--spacing-xl);
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.key-features {
+  background: var(--surface-elevated);
+  padding: var(--spacing-xl);
+  border-radius: var(--radius-lg);
+  margin-top: var(--spacing-xl);
+  border: 1px solid var(--border);
+}
+
+.features-title {
+  font-size: var(--font-size-lg);
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: var(--spacing-lg);
+  text-align: center;
+}
+
+.features-list {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: var(--spacing-md);
+}
+
+.features-list li {
+  padding: var(--spacing-sm) 0;
+  color: var(--text-secondary);
+  position: relative;
+  padding-left: var(--spacing-lg);
+  line-height: 1.6;
+}
+
+.features-list li::before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  color: var(--success-color);
+  font-weight: bold;
+  font-size: var(--font-size-lg);
+}
+
+.features-list strong {
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+/* Comprehensive Benefits Section Styles */
+.comprehensive-benefits {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: var(--spacing-xl);
+  margin-bottom: var(--spacing-2xl);
+}
+
+.benefit-category {
+  background: var(--surface);
+  padding: var(--spacing-xl);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-sm);
+  transition: all var(--transition-base);
+}
+
+.benefit-category:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--primary-color);
+}
+
+.category-title {
+  font-size: var(--font-size-xl);
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: var(--spacing-lg);
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+}
+
+.benefit-details {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+}
+
+.benefit-point {
+  color: var(--text-secondary);
+  line-height: 1.6;
+  padding: var(--spacing-sm) 0;
+}
+
+.benefit-point strong {
+  color: var(--text-primary);
+  font-weight: 600;
+  display: block;
+  margin-bottom: var(--spacing-xs);
+}
+
+/* Success Stats Styles */
+.success-stats {
+  background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+  padding: var(--spacing-2xl);
+  border-radius: var(--radius-lg);
+  color: white;
+  text-align: center;
+  margin-top: var(--spacing-xl);
+}
+
+.stats-title {
+  font-size: var(--font-size-xl);
+  font-weight: 600;
+  margin-bottom: var(--spacing-xl);
+  color: white;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: var(--spacing-lg);
+}
+
+.stat-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-xs);
+}
+
+.stat-number {
+  font-size: var(--font-size-2xl);
+  font-weight: 700;
+  color: white;
+  display: block;
+}
+
+.stat-label {
+  font-size: var(--font-size-sm);
+  color: rgba(255, 255, 255, 0.9);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Mobile Responsiveness for New Content */
+@media (max-width: 768px) {
+  .features-list {
+    grid-template-columns: 1fr;
+  }
+  
+  .comprehensive-benefits {
+    grid-template-columns: 1fr;
+  }
+  
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--spacing-md);
+  }
+  
+  .key-features,
+  .benefit-category {
+    padding: var(--spacing-lg);
+  }
+  
+  .success-stats {
+    padding: var(--spacing-xl);
+  }
+  
+  .category-title {
+    font-size: var(--font-size-lg);
+  }
+  
+  .stats-title {
+    font-size: var(--font-size-lg);
+  }
+  
+  .stat-number {
+    font-size: var(--font-size-xl);
   }
 }
 </style>
