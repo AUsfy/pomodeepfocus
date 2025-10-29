@@ -1,91 +1,39 @@
-<script setup>
-import { ref, computed, onMounted, onUnmounted, watch } from 'vue'
-import PomodoroTimer from './components/PomodoroTimer.vue'
-import Settings from './components/Settings.vue'
-import Insights from './components/Insights.vue'
-import Login from './components/Login.vue'
-import About from './components/About.vue'
-import CookieConsent from './components/CookieConsent.vue'
-import { useAuth } from './composables/useAuth.js'
-import { useSEO } from './composables/useSEO.js'
-import { Analytics } from './utils/analytics.js'
 
-const currentView = ref('timer')
+<script setup>
+import { ref, onMounted } from 'vue'
+import { useAuth } from './composables/useAuth.js'
+
 const isDarkMode = ref(false)
 const showLoginModal = ref(false)
-
-// Authentication
 const { user, isAuthenticated, loadStoredUser, logout } = useAuth()
 
-// SEO Management
-const { setTimerPage, setInsightsPage, setSettingsPage, setHomePage, setAboutPage } = useSEO()
-
-// Watch for view changes and update SEO
-watch(currentView, (newView) => {
-  // Track page view in Google Analytics
-  const pageTitle = `Pomo - ${newView.charAt(0).toUpperCase() + newView.slice(1)}`
-  Analytics.trackPageView(`/${newView}`, pageTitle)
-  
-  switch (newView) {
-    case 'timer':
-      setTimerPage()
-      break
-    case 'insights':
-      setInsightsPage()
-      break
-    case 'settings':
-      setSettingsPage()
-      break
-    case 'about':
-      setAboutPage()
-      break
-    default:
-      setHomePage()
-  }
-}, { immediate: true })
-
-// Theme management
 const toggleTheme = () => {
   isDarkMode.value = !isDarkMode.value
   document.documentElement.setAttribute('data-theme', isDarkMode.value ? 'dark' : 'light')
   localStorage.setItem('pomodoro-theme', isDarkMode.value ? 'dark' : 'light')
 }
 
-// Navigation
-const switchToView = (view) => {
-  currentView.value = view
-}
-
-// Authentication handlers
 const showLogin = () => {
   showLoginModal.value = true
 }
-
 const hideLogin = () => {
   showLoginModal.value = false
 }
-
 const handleLoginSuccess = () => {
   showLoginModal.value = false
-  currentView.value = 'timer'
 }
-
 const handleLogout = async () => {
   if (confirm('Are you sure you want to sign out? Your data will be synced before signing out.')) {
     await logout()
-    currentView.value = 'timer'
   }
 }
 
 onMounted(() => {
-  // Load theme preference from localStorage
   const savedTheme = localStorage.getItem('pomodoro-theme')
   if (savedTheme) {
     isDarkMode.value = savedTheme === 'dark'
   }
   document.documentElement.setAttribute('data-theme', isDarkMode.value ? 'dark' : 'light')
-  
-  // Load stored user silently (no redirect)
   loadStoredUser()
 })
 </script>
@@ -93,66 +41,32 @@ onMounted(() => {
 <template>
   <!-- Main app interface (always visible) -->
   <div id="app" :class="{ 'dark-mode': isDarkMode }">
+
     <header class="app-header">
       <div class="container">
         <h1 class="app-title">
           <span class="tomato-icon">🍅</span>
           Pomodoro Timer
         </h1>
-        
         <nav class="main-nav">
-          <button 
-            @click="switchToView('timer')" 
-            :class="{ active: currentView === 'timer' }"
-            class="nav-btn"
-          >
-            Timer
-          </button>
-          <button 
-            @click="switchToView('insights')" 
-            :class="{ active: currentView === 'insights' }"
-            class="nav-btn"
-          >
-            Insights
-          </button>
-          <button 
-            @click="switchToView('settings')" 
-            :class="{ active: currentView === 'settings' }"
-            class="nav-btn"
-          >
-            Settings
-          </button>
-          <button 
-            @click="switchToView('about')" 
-            :class="{ active: currentView === 'about' }"
-            class="nav-btn"
-          >
-            About
-          </button>
+          <router-link to="/" class="nav-btn" active-class="active" exact>Timer</router-link>
+          <router-link to="/insights" class="nav-btn" active-class="active">Insights</router-link>
+          <router-link to="/settings" class="nav-btn" active-class="active">Settings</router-link>
+          <router-link to="/about" class="nav-btn" active-class="active">About</router-link>
+          <router-link to="/blog" class="nav-btn" active-class="active">Blog</router-link>
         </nav>
-
         <div class="header-actions">
-          <!-- User info and logout (if authenticated) -->
           <div v-if="isAuthenticated" class="user-menu">
             <div class="user-info">
               <span class="user-avatar">👤</span>
               <span class="user-name">{{ user.name }}</span>
             </div>
-            <button @click="handleLogout" class="logout-btn" title="Sign out">
-              🚪
-            </button>
+            <button @click="handleLogout" class="logout-btn" title="Sign out">🚪</button>
           </div>
-          
-          <!-- Sign in button (if not authenticated) - Disabled until authentication is implemented -->
-          <button 
-            v-if="false && !isAuthenticated"
-            @click="showLogin" 
-            class="sign-in-btn"
-          >
+          <button v-if="false && !isAuthenticated" @click="showLogin" class="sign-in-btn">
             <span class="sign-in-icon">🔐</span>
             Sign In
           </button>
-
           <button @click="toggleTheme" class="theme-toggle">
             {{ isDarkMode ? '☀️' : '🌙' }}
           </button>
@@ -162,10 +76,7 @@ onMounted(() => {
 
     <main class="main-content">
       <div class="container">
-        <PomodoroTimer v-if="currentView === 'timer'" @switchView="switchToView" />
-        <Insights v-if="currentView === 'insights'" ref="insightsRef" />
-        <Settings v-if="currentView === 'settings'" />
-        <About v-if="currentView === 'about'" />
+        <router-view />
       </div>
     </main>
 
