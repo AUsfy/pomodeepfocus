@@ -28,6 +28,7 @@ onMounted(() => {
   max-width: 700px;
   margin: 0 auto;
   padding: 2rem 0;
+  text-align: left;
 }
 .blog-title {
   font-size: 2rem;
@@ -45,10 +46,12 @@ onMounted(() => {
   margin-bottom: 2.5rem;
   border-bottom: 1px solid var(--border);
   padding-bottom: 1.5rem;
+  text-align: left;
 }
 .blog-post-link {
   text-decoration: none;
   color: var(--text-primary);
+  display: block;
 }
 .blog-post-link:hover .post-title {
   color: var(--primary-color);
@@ -58,10 +61,13 @@ onMounted(() => {
   font-size: 1.25rem;
   font-weight: 700;
   margin: 0 0 0.5rem 0;
+  text-align: left;
 }
 .post-excerpt {
   color: var(--text-secondary);
   font-size: 1rem;
   margin: 0;
+  text-align: left;
+  line-height: 1.6;
 }
 </style>
