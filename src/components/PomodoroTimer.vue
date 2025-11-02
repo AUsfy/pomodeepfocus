@@ -884,6 +884,7 @@ onMounted(() => {
   display: flex;
   flex-direction: column;
   gap: var(--spacing-2xl);
+  text-align: left;
 }
 
 /* Timer modes with pill design */
@@ -1090,7 +1091,7 @@ onMounted(() => {
   border: 1px solid var(--border);
   border-radius: var(--radius-lg);
   padding: var(--spacing-md) var(--spacing-lg);
-  text-align: center;
+  text-align: left;
   box-shadow: var(--shadow-sm);
 }
 
@@ -1178,7 +1179,7 @@ onMounted(() => {
   background: var(--background);
   color: var(--text-primary);
   font-size: var(--font-size-sm);
-  text-align: center;
+  text-align: left;
   transition: all var(--transition-fast);
 }
 
@@ -1594,6 +1595,7 @@ onMounted(() => {
 
 .help-container {
   padding: var(--spacing-2xl);
+  text-align: left;
 }
 
 /* Method Explanation Section */
@@ -1603,7 +1605,7 @@ onMounted(() => {
   border-radius: var(--radius-lg);
   padding: var(--spacing-2xl);
   margin-bottom: var(--spacing-2xl);
-  text-align: center;
+  text-align: left;
 }
 
 .method-title {
@@ -1639,7 +1641,7 @@ onMounted(() => {
   font-size: var(--font-size-3xl);
   font-weight: 700;
   color: var(--text-primary);
-  text-align: center;
+  text-align: left;
   margin-bottom: var(--spacing-md);
 }
 
