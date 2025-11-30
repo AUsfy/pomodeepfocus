@@ -1,0 +1,51 @@
+<!-- This is a placeholder for the OG image. For a real implementation, you would need to create a 1200x630 PNG image -->
+<!-- For now, we'll create a simple HTML canvas to generate the image -->
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Generate OG Image</title>
+</head>
+<body>
+    <canvas id="ogCanvas" width="1200" height="630"></canvas>
+    <script>
+        const canvas = document.getElementById('ogCanvas');
+        const ctx = canvas.getContext('2d');
+        
+        // Background gradient
+        const gradient = ctx.createLinearGradient(0, 0, 1200, 630);
+        gradient.addColorStop(0, '#ef4444');
+        gradient.addColorStop(1, '#dc2626');
+        ctx.fillStyle = gradient;
+        ctx.fillRect(0, 0, 1200, 630);
+        
+        // Title text
+        ctx.fillStyle = 'white';
+        ctx.font = 'bold 72px Arial, sans-serif';
+        ctx.textAlign = 'center';
+        ctx.fillText('Pomo Timer', 600, 200);
+        
+        // Subtitle
+        ctx.font = '42px Arial, sans-serif';
+        ctx.fillText('Stop Procrastinating, Start Achieving', 600, 280);
+        
+        // Features
+        ctx.font = '32px Arial, sans-serif';
+        ctx.fillText('✓ Focus Sessions  ✓ Task Tracking  ✓ Progress Analytics', 600, 360);
+        
+        // Tomato emoji
+        ctx.font = '120px Arial, sans-serif';
+        ctx.fillText('🍅', 600, 500);
+        
+        // URL
+        ctx.font = '28px Arial, sans-serif';
+        ctx.fillText('pomodeepfocus.online', 600, 580);
+        
+        // Download the image
+        const link = document.createElement('a');
+        link.download = 'og-image.png';
+        link.href = canvas.toDataURL();
+        link.click();
+    </script>
+</body>
+</html>
