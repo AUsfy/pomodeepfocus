@@ -1,60 +1,94 @@
 import { createCanvas } from 'canvas';
 import fs from 'fs';
 
-// Create canvas
-const canvas = createCanvas(1200, 630);
-const ctx = canvas.getContext('2d');
-
-// Background gradient
-const gradient = ctx.createLinearGradient(0, 0, 1200, 630);
-gradient.addColorStop(0, '#ef4444');
-gradient.addColorStop(1, '#dc2626');
-ctx.fillStyle = gradient;
-ctx.fillRect(0, 0, 1200, 630);
-
-// Add subtle pattern/texture
-ctx.globalAlpha = 0.1;
-for (let i = 0; i < 50; i++) {
+/**
+ * Draw tomato icon on a given canvas context
+ * @param {CanvasRenderingContext2D} ctx - Canvas context
+ * @param {number} centerX - Center X coordinate
+ * @param {number} centerY - Center Y coordinate
+ * @param {number} scale - Scale factor for the tomato
+ */
+function drawTomato(ctx, centerX, centerY, scale = 1) {
+  // Draw tomato body
   ctx.beginPath();
-  ctx.arc(Math.random() * 1200, Math.random() * 630, Math.random() * 3, 0, Math.PI * 2);
-  ctx.fillStyle = 'white';
+  ctx.ellipse(centerX, centerY + (40 * scale), 90 * scale, 80 * scale, 0, 0, Math.PI * 2);
+  ctx.fillStyle = '#ef4444'; // Tomato red
   ctx.fill();
+
+  // Add tomato highlight
+  ctx.beginPath();
+  ctx.ellipse(centerX - (28 * scale), centerY + (15 * scale), 20 * scale, 17 * scale, -0.3, 0, Math.PI * 2);
+  ctx.fillStyle = '#f87171'; // Lighter red
+  ctx.fill();
+
+  // Draw stem/leaves (green top)
+  ctx.beginPath();
+  ctx.ellipse(centerX, centerY - (40 * scale), 30 * scale, 15 * scale, 0, 0, Math.PI * 2);
+  ctx.fillStyle = '#22c55e'; // Green
+  ctx.fill();
+
+  // Add small leaf details
+  ctx.beginPath();
+  ctx.ellipse(centerX - (18 * scale), centerY - (45 * scale), 12 * scale, 7 * scale, -0.5, 0, Math.PI * 2);
+  ctx.fillStyle = '#16a34a'; // Darker green
+  ctx.fill();
+
+  ctx.beginPath();
+  ctx.ellipse(centerX + (18 * scale), centerY - (45 * scale), 12 * scale, 7 * scale, 0.5, 0, Math.PI * 2);
+  ctx.fillStyle = '#16a34a';
+  ctx.fill();
+
+  // Add stem line
+  ctx.beginPath();
+  ctx.moveTo(centerX, centerY - (55 * scale));
+  ctx.lineTo(centerX, centerY - (25 * scale));
+  ctx.strokeStyle = '#15803d';
+  ctx.lineWidth = 4 * scale;
+  ctx.stroke();
 }
-ctx.globalAlpha = 1;
 
-// Title text with better font settings
-ctx.textAlign = 'center';
-ctx.textBaseline = 'middle';
+// Create OG image (1200x630)
+const ogCanvas = createCanvas(1200, 630);
+const ogCtx = ogCanvas.getContext('2d');
 
-// Main title
-ctx.fillStyle = 'white';
-ctx.font = 'bold 72px Arial, sans-serif';
-ctx.fillText('🍅 Pomo Timer', 600, 180);
+// White background for OG image
+ogCtx.fillStyle = '#ffffff';
+ogCtx.fillRect(0, 0, 1200, 630);
 
-// Subtitle
-ctx.font = '42px Arial, sans-serif';
-ctx.fillStyle = 'rgba(255, 255, 255, 0.95)';
-ctx.fillText('Stop Procrastinating, Start Achieving', 600, 260);
+// Draw large tomato in center
+drawTomato(ogCtx, 600, 315, 2.5);
 
-// Features with icons
-ctx.font = '28px Arial, sans-serif';
-ctx.fillStyle = 'rgba(255, 255, 255, 0.85)';
-ctx.fillText('✓ 25min Focus Sessions  ✓ Task Management  ✓ Progress Tracking', 600, 340);
+// Add title text
+ogCtx.textAlign = 'center';
+ogCtx.textBaseline = 'middle';
+ogCtx.fillStyle = '#1f2937';
+ogCtx.font = 'bold 48px Arial, sans-serif';
+ogCtx.fillText('Pomo Timer', 600, 520);
 
-// Call to action
-ctx.font = '32px Arial, sans-serif';
-ctx.fillStyle = 'rgba(255, 255, 255, 0.9)';
-ctx.fillText('Free Online Productivity Timer', 600, 420);
+// Add subtitle
+ogCtx.font = '24px Arial, sans-serif';
+ogCtx.fillStyle = '#6b7280';
+ogCtx.fillText('Stop Procrastinating, Start Achieving', 600, 560);
 
-// URL
-ctx.font = 'bold 36px Arial, sans-serif';
-ctx.fillStyle = 'rgba(255, 255, 255, 0.8)';
-ctx.fillText('pomodeepfocus.online', 600, 520);
+// Save OG image
+const ogBuffer = ogCanvas.toBuffer('image/png');
+fs.writeFileSync('./public/og-image.png', ogBuffer);
 
-// Save as PNG
-const buffer = canvas.toBuffer('image/png');
-fs.writeFileSync('./public/og-image.png', buffer);
+// Create favicon (512x512)
+const faviconCanvas = createCanvas(512, 512);
+const faviconCtx = faviconCanvas.getContext('2d');
 
-console.log('✅ Created og-image.png successfully!');
-console.log('📏 Dimensions: 1200x630px (optimal for social media)');
-console.log('📍 Location: ./public/og-image.png');
+// Clear background (transparent)
+faviconCtx.clearRect(0, 0, 512, 512);
+
+// Draw tomato centered
+drawTomato(faviconCtx, 256, 256, 2);
+
+// Save favicon
+const faviconBuffer = faviconCanvas.toBuffer('image/png');
+fs.writeFileSync('./public/favicon.png', faviconBuffer);
+
+console.log('✅ Created og-image.png and favicon.png successfully!');
+console.log('🍅 Both images use the same tomato icon design');
+console.log('📏 OG Image: 1200x630px | Favicon: 512x512px');
+console.log('📍 Location: ./public/');
