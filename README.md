@@ -90,7 +90,25 @@ docker run -d -p 80:80 --name pomodoro pomodoro-timer
 docker-compose up -d
 ```
 
+## Documentation
+
+For detailed documentation, see the [`docs/`](./docs) directory:
+
+- **[Architecture](./docs/ARCHITECTURE.md)** - Technical architecture and design
+- **[API Reference](./docs/API.md)** - Component and composable APIs
+- **[Contributing Guide](./docs/CONTRIBUTING.md)** - How to contribute
+- **[Deployment Guide](./docs/DEPLOYMENT.md)** - Deployment instructions
+
 ## Contributing
+
+We welcome contributions! Please see our [Contributing Guide](./docs/CONTRIBUTING.md) for details on:
+
+- Development setup and workflow
+- Code style guidelines
+- Pull request process
+- Areas where you can help
+
+Quick start for contributors:
 
 1. Fork the repository
 2. Create your feature branch: `git checkout -b feature/amazing-feature`
