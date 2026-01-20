@@ -169,28 +169,24 @@ const handleLogin = async (email, password) => {
 
 The SEO composable manages page metadata for better search engine optimization.
 
-#### Methods
+#### State & Methods
 
 ```javascript
 const {
-  updateMetaTags,    // (tags: MetaTags) => void - Update page meta tags
-  setTitle,          // (title: string) => void - Set page title
-  setDescription,    // (description: string) => void - Set meta description
+  // Reactive state
+  title,              // ref<string> - Current page title
+  description,        // ref<string> - Current meta description
+  keywords,           // ref<string> - Current meta keywords
+  
+  // Methods
+  updateMeta,         // () => void - Manually trigger meta tag update
+  setTimerPage,       // () => void - Set meta tags for timer page
+  setInsightsPage,    // () => void - Set meta tags for insights page
+  setSettingsPage,    // () => void - Set meta tags for settings page
+  setHomePage,        // () => void - Set meta tags for home page
+  setAboutPage,       // () => void - Set meta tags for about page
+  setHelpPage,        // () => void - Set meta tags for help page
 } = useSEO()
-```
-
-#### MetaTags Object
-
-```javascript
-{
-  title?: string,              // Page title
-  description?: string,        // Meta description
-  keywords?: string[],         // Meta keywords
-  ogTitle?: string,           // Open Graph title
-  ogDescription?: string,     // Open Graph description
-  ogImage?: string,           // Open Graph image URL
-  twitterCard?: string        // Twitter card type
-}
 ```
 
 #### Usage Example
@@ -200,14 +196,29 @@ const {
 import { onMounted } from 'vue'
 import { useSEO } from '@/composables/useSEO'
 
-const { updateMetaTags } = useSEO()
+const { setSettingsPage } = useSEO()
+
+// Automatically sets title, description, and keywords for settings page
+onMounted(() => {
+  setSettingsPage()
+})
+</script>
+```
+
+Or for custom meta tags:
+
+```vue
+<script setup>
+import { onMounted } from 'vue'
+import { useSEO } from '@/composables/useSEO'
+
+const { title, description, keywords } = useSEO()
 
 onMounted(() => {
-  updateMetaTags({
-    title: 'Settings - Pomodoro Timer',
-    description: 'Customize your Pomodoro timer settings',
-    keywords: ['pomodoro', 'settings', 'timer', 'customization']
-  })
+  title.value = 'Custom Page Title'
+  description.value = 'Custom page description'
+  keywords.value = 'custom, keywords, here'
+  // Meta tags auto-update via watchers
 })
 </script>
 ```
